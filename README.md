@@ -1,256 +1,105 @@
 # WinMinimal
 
-**WinMinimal** is a modular PowerShell framework designed to create a clean, lightweight and predictable Windows 11 baseline.
+> **A modular PowerShell framework to build a clean, lightweight and predictable Windows 11 installation.**
 
-WinMinimal is **not** a blind debloater.
-It is a configurable optimization framework where every change is documented, repeatable and easy to understand.
+WinMinimal is **not** another Windows "debloat" script.
+
+It is an open-source project designed around modularity, maintainability and repeatability, with the goal of creating a clean Windows installation while preserving system stability.
 
 ---
 
-# Goals
+# Philosophy
 
-* Remove unnecessary preinstalled Windows applications.
-* Remove provisioned AppX packages.
-* Disable selected unnecessary services.
-* Disable selected scheduled tasks.
-* Reduce background activity.
-* Keep Windows Update, Microsoft Defender and core system components intact.
-* Provide detailed execution logs.
-* Keep configuration separate from implementation.
-* Make the project easy to maintain and extend.
+WinMinimal follows a few simple engineering principles:
+
+* Small modules
+* One responsibility per module
+* Explicit configuration
+* Configuration separated from implementation
+* Readable code
+* Deterministic behavior
+* Repeatable execution
+* Simplicity over cleverness
+
+---
+
+# Features
+
+* Modular PowerShell architecture
+* User-configurable settings
+* Detailed execution logs
+* Repeatable execution
+* Microsoft-native tools
+* Designed for Windows 11 Pro
+* Easy to extend
+
+---
+
+# Quick Start
+
+If this is your first time using WinMinimal, begin with:
+
+➡ **INSTALL.md**
+
+The installation guide explains every required step, including PowerShell configuration and first execution.
 
 ---
 
 # Project Structure
 
 ```text
-WinMinimal/
+WinMinimal
 │
 ├── README.md
+├── INSTALL.md
+├── ARCHITECTURE.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
+├── LICENSE
+├── .gitignore
 ├── Run-WinMinimal.ps1
 │
-├── Config/
+├── Config
 │   ├── Config.ps1
 │   ├── Defaults.ps1
-│   └── Profiles/
-│       └── HTPC.ps1
+│   └── Profiles
 │
-├── Modules/
-│   └── WinMinimal.Common.psm1
+├── Modules
 │
-├── Scripts/
-│   ├── Remove-Apps.ps1
-│   └── Optimize-Startup.ps1
+├── Scripts
 │
-├── Docs/
-├── Logs/
-└── Backup/
+├── Docs
+│
+├── Logs
+│
+└── Backup
 ```
-
----
-
-# Requirements
-
-* Windows 11 Pro (recommended)
-* PowerShell 5.1 or newer
-* Administrator privileges
-
----
-
-# Running PowerShell as Administrator
-
-Open the Start menu and search for:
-
-```text
-PowerShell
-```
-
-Right-click **Windows PowerShell** and choose:
-
-```text
-Run as administrator
-```
-
-Accept the UAC prompt.
-
----
-
-# Temporary Execution Policy
-
-Windows may prevent PowerShell scripts from running.
-
-Before executing any WinMinimal script, allow script execution **only for the current PowerShell session**:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-If prompted, answer:
-
-* **Y** on English Windows
-* **S** on Italian Windows
-
-This command **does not permanently modify** the system execution policy.
-
----
-
-# Basic Usage
-
-Open an elevated PowerShell window:
-
-```powershell
-cd C:\WinMinimal
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Then execute the desired scripts:
-
-```powershell
-.\Scripts\Remove-Apps.ps1
-.\Scripts\Optimize-Startup.ps1
-```
-
-Future versions will include:
-
-```powershell
-.\Run-WinMinimal.ps1
-```
-
-to automatically execute all enabled modules in the correct order.
-
----
-
-# Configuration
-
-Most users should only edit:
-
-```text
-Config\Config.ps1
-```
-
-This file contains the user-selectable configuration options.
-
-Example:
-
-```powershell
-$ActiveProfile = "HTPC"
-
-$RemoveCopilot = $true
-$RemoveXboxComponents = $true
-
-$DisableTelemetry = $true
-$DisableWindowsSearch = $true
-$DisableSysMain = $true
-```
-
-Advanced users may also customize:
-
-```text
-Config\Defaults.ps1
-```
-
-which contains the default lists of:
-
-* AppX packages
-* Services
-* Scheduled Tasks
-
-managed by WinMinimal.
-
----
-
-# Profiles
-
-Profiles are stored in:
-
-```text
-Config\Profiles\
-```
-
-The active profile is selected through:
-
-```powershell
-$ActiveProfile = "HTPC"
-```
-
-Initially the following profiles are planned:
-
-| Profile        | Description                                                                                                                         |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Default        | Generic baseline configuration.                                                                                                     |
-| HTPC           | Home theater / multimedia appliance. Removes consumer applications, Xbox components and Copilot while reducing background services. |
-| Desktop        | Balanced desktop configuration.                                                                                                     |
-| Developer      | Preserves developer-related components and avoids aggressive optimization.                                                          |
-| VirtualMachine | Optimized for disposable or laboratory virtual machines.                                                                            |
-
-Future versions will document every profile in detail inside:
-
-```text
-Docs\Profiles.md
-```
-
----
-
-# Logging
-
-Execution logs are automatically stored in:
-
-```text
-Logs\
-```
-
-When timestamped logging is enabled, each execution generates a separate log file.
-
-Example:
-
-```text
-Logs\20260630-203000-Remove-Apps.log
-```
-
----
-
-# Backup
-
-The `Backup` directory is reserved for future use.
-
-Future versions may automatically export registry settings, service configurations and other information required to restore previous states.
-
----
-
-# Design Principles
-
-WinMinimal follows a few simple principles:
-
-* Small modules.
-* One responsibility per module.
-* Short functions.
-* Explicit names.
-* Configuration separated from implementation.
-* No hidden magic.
-* Prefer Microsoft-native tools.
-* Keep changes understandable and, whenever possible, reversible.
 
 ---
 
 # Current Modules
 
-| Module               | Purpose                                                 |
-| -------------------- | ------------------------------------------------------- |
-| Remove-Apps.ps1      | Remove unwanted AppX packages and provisioned packages. |
-| Optimize-Startup.ps1 | Optimize startup-related services and scheduled tasks.  |
+Current implementation includes:
+
+* Application removal
+* Startup optimization
+
+Additional modules are planned and tracked in **Docs/Roadmap.md**.
 
 ---
 
-# Planned Modules
+# Documentation
 
-| Module                | Purpose                                              |
-| --------------------- | ---------------------------------------------------- |
-| Optimize-Privacy.ps1  | Configure Windows privacy settings.                  |
-| Optimize-Explorer.ps1 | Configure File Explorer behavior.                    |
-| Optimize-Network.ps1  | Network optimization and hardening.                  |
-| Optimize-Defender.ps1 | Tune Microsoft Defender without reducing protection. |
-| Cleanup.ps1           | Final cleanup tasks.                                 |
-| Report.ps1            | Generate a complete execution report.                |
+| Document        | Purpose                          |
+| --------------- | -------------------------------- |
+| INSTALL.md      | Installation and first execution |
+| ARCHITECTURE.md | Project architecture             |
+| CHANGELOG.md    | Version history                  |
+| CONTRIBUTING.md | Contribution guidelines          |
+| SECURITY.md     | Security policy                  |
+| Docs/Roadmap.md | Planned features                 |
 
 ---
 
@@ -258,27 +107,46 @@ WinMinimal follows a few simple principles:
 
 Planned future improvements include:
 
-* Interactive execution mode.
-* Dry-run / WhatIf mode.
-* Automatic rollback where possible.
-* HTML reports.
-* JSON reports.
-* Additional optimization profiles.
-* Windows Server support.
-* Windows 12 support (when available).
+* Configuration profiles
+* Privacy optimization
+* Explorer optimization
+* Network optimization
+* Microsoft Defender tuning
+* Cleanup module
+* HTML and JSON reports
+* Dry-run mode
+* Backup and partial rollback
+
+See **Docs/Roadmap.md** for the complete roadmap.
 
 ---
 
-# Disclaimer
+# Project Status
 
-WinMinimal modifies Windows applications, services and scheduled tasks.
+WinMinimal is currently under active development.
 
-Although the project aims to be conservative and well documented, no warranty is provided.
+The core architecture has been established and new modules will be added incrementally while maintaining backward compatibility whenever possible.
 
-Always review the configuration before executing the scripts and use WinMinimal at your own risk.
+---
+
+# Contributing
+
+Contributions, ideas, bug reports and feature requests are always welcome.
+
+Please read **CONTRIBUTING.md** before submitting a Pull Request.
 
 ---
 
 # License
 
-License information will be added before the first public release.
+WinMinimal is released under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+See the **LICENSE** file for details.
+
+---
+
+# Final Note
+
+WinMinimal was created with a simple idea:
+
+> **Clean Windows. Predictable Windows. Documented Windows.**
