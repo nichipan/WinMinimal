@@ -10,9 +10,6 @@
 #
 #      Executes the enabled WinMinimal scripts in the defined order.
 #
-#  Version:
-#      0.2.4
-#
 ###########################################################################
 
 $RootPath = "C:\WinMinimal"
@@ -50,6 +47,10 @@ $ScriptsToRun = @(
     @{
         Name = "Optimizing startup"
         Path = "$RootPath\Scripts\Invoke-OptimizeStartup.ps1"
+    },
+    @{
+        Name = "Optimizing privacy"
+        Path = "$RootPath\Scripts\Invoke-OptimizePrivacy.ps1"
     }
 )
 

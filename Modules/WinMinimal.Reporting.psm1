@@ -8,9 +8,6 @@
 #  Description:
 #      Reporting functions used to collect and display execution summaries.
 #
-#  Version:
-#      0.2.4
-#
 ###########################################################################
 
 function New-WMReport {
@@ -32,8 +29,9 @@ function New-WMReport {
 
         ServicesDisabled       = 0
         ServicesSetToManual    = 0
-
         ScheduledTasksDisabled = 0
+
+        PrivacySettingsApplied = 0
 
         Warnings               = 0
         Errors                 = 0
@@ -107,6 +105,7 @@ function Show-WMReport {
     Write-Host ("Services disabled............ {0}" -f $Report["ServicesDisabled"])
     Write-Host ("Services set to Manual....... {0}" -f $Report["ServicesSetToManual"])
     Write-Host ("Scheduled tasks disabled..... {0}" -f $Report["ScheduledTasksDisabled"])
+    Write-Host ("Privacy settings applied..... {0}" -f $Report["PrivacySettingsApplied"])
     Write-Host ("Warnings..................... {0}" -f $Report["Warnings"])
     Write-Host ("Errors....................... {0}" -f $Report["Errors"])
     Write-Host ("Execution time............... {0}" -f $duration.ToString("hh\:mm\:ss"))

@@ -8,9 +8,6 @@
 #  Description:
 #      Common helper functions used by WinMinimal scripts.
 #
-#  Version:
-#      0.2.0
-#
 ###########################################################################
 
 function Test-WMAdministrator {

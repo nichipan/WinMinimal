@@ -8,9 +8,6 @@
 #  Description:
 #      Functions used to optimize Windows services and scheduled tasks.
 #
-#  Version:
-#      0.2.3
-#
 ###########################################################################
 
 function Set-WMServiceStartupType {

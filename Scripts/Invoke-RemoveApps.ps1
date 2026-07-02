@@ -9,9 +9,6 @@
 #      Removes unwanted AppX applications and provisioned AppX packages
 #      according to the active WinMinimal configuration.
 #
-#  Version:
-#      0.2.3
-#
 ###########################################################################
 
 param(

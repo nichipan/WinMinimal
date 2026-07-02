@@ -9,9 +9,6 @@
 #      Optimizes Windows startup by configuring services and scheduled
 #      tasks according to the active WinMinimal configuration.
 #
-#  Version:
-#      0.2.3
-#
 ###########################################################################
 
 param(

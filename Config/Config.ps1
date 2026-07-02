@@ -12,15 +12,12 @@
 #      Default application, service and scheduled task lists are stored in
 #      Defaults.ps1.
 #
-#  Version:
-#      0.2.4
-#
 ###########################################################################
 
 # Project settings
 
 $ProjectName    = "WinMinimal"
-$ProjectVersion = "0.2.4"
+$ProjectVersion = "0.3.0"
 
 # Root path
 
@@ -73,3 +70,13 @@ $RemoveXboxComponents = $true
 $DisableTelemetry = $true
 $DisableWindowsSearch = $true
 $DisableSysMain = $true
+
+# Privacy optimization
+
+$EnablePrivacyOptimization = $true
+
+$DisableAdvertisingId = $true
+$DisableActivityHistory = $true
+$DisableTailoredExperiences = $true
+$DisableSuggestedContent = $true
+$DisableConsumerFeatures = $true

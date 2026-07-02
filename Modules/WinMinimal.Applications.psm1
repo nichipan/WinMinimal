@@ -9,9 +9,6 @@
 #      Functions used to remove unwanted AppX applications and provisioned
 #      AppX packages.
 #
-#  Version:
-#      0.2.3
-#
 ###########################################################################
 
 function Remove-WMInstalledApp {

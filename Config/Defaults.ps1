@@ -11,9 +11,6 @@
 #      This file contains the baseline definitions used by WinMinimal.
 #      End users should normally customize Config.ps1 instead.
 #
-#  Version:
-#      0.1.0
-#
 ###########################################################################
 
 ###########################################################################
@@ -124,4 +121,75 @@ $ScheduledTasksToDisable = @(
     "\Microsoft\Windows\Maps\MapsUpdateTask",
     "\Microsoft\Windows\Feedback\Siuf\DmClient",
     "\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload"
+)
+
+###########################################################################
+# Privacy registry settings
+###########################################################################
+
+$PrivacyRegistrySettings = @(
+    @{
+        Name  = "Disable Advertising ID"
+        Path  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo"
+        Key   = "Enabled"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableAdvertisingId"
+    },
+    @{
+        Name  = "Disable Activity History publishing"
+        Path  = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System"
+        Key   = "PublishUserActivities"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableActivityHistory"
+    },
+    @{
+        Name  = "Disable Activity History upload"
+        Path  = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System"
+        Key   = "UploadUserActivities"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableActivityHistory"
+    },
+    @{
+        Name  = "Disable Tailored Experiences"
+        Path  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Privacy"
+        Key   = "TailoredExperiencesWithDiagnosticDataEnabled"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableTailoredExperiences"
+    },
+    @{
+        Name  = "Disable Windows Consumer Features"
+        Path  = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
+        Key   = "DisableWindowsConsumerFeatures"
+        Type  = "DWord"
+        Value = 1
+        EnabledBy = "DisableConsumerFeatures"
+    },
+    @{
+        Name  = "Disable subscribed content suggestions"
+        Path  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        Key   = "SubscribedContent-338388Enabled"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableSuggestedContent"
+    },
+    @{
+        Name  = "Disable silent installed apps"
+        Path  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        Key   = "SilentInstalledAppsEnabled"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableSuggestedContent"
+    },
+    @{
+        Name  = "Disable content delivery manager suggestions"
+        Path  = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        Key   = "SystemPaneSuggestionsEnabled"
+        Type  = "DWord"
+        Value = 0
+        EnabledBy = "DisableSuggestedContent"
+    }
 )
