@@ -148,3 +148,54 @@ function Write-WMError {
     Write-WMConsole -Message "ERROR: $Message" -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity -Color "Red"
     Write-WMLog -Message "ERROR: $Message" -LogFile $LogFile -EnableLogging $EnableLogging
 }
+
+function Set-WMRegistryValue {
+    param(
+        [string]$Name,
+        [string]$Path,
+        [string]$Key,
+        [string]$Type,
+        [object]$Value,
+        [string]$LogFile,
+        [bool]$EnableLogging = $true,
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report,
+        [string]$ReportCounter
+    )
+
+    Write-WMLog "Applying registry setting: $Name" $LogFile $EnableLogging
+    Write-WMLog "Path: $Path" $LogFile $EnableLogging
+    Write-WMLog "Key: $Key" $LogFile $EnableLogging
+    Write-WMLog "Value: $Value" $LogFile $EnableLogging
+
+    try {
+        if (-not (Test-Path $Path)) {
+            New-Item -Path $Path -Force | Out-Null
+            Write-WMLog "Created registry path: $Path" $LogFile $EnableLogging
+        }
+
+        New-ItemProperty `
+            -Path $Path `
+            -Name $Key `
+            -Value $Value `
+            -PropertyType $Type `
+            -Force | Out-Null
+
+        Write-WMLog "Registry setting applied: $Name" $LogFile $EnableLogging
+
+        if ($Report -and $ReportCounter -and $Report.ContainsKey($ReportCounter)) {
+            $Report[$ReportCounter]++
+        }
+    }
+    catch {
+        Write-WMWarning "Could not apply registry setting: $Name - $($_.Exception.Message)" $LogFile $EnableLogging
+
+        if ($Report -and $Report.ContainsKey("Warnings")) {
+            $Report["Warnings"]++
+        }
+
+        if (-not $ContinueOnError) {
+            throw
+        }
+    }
+}

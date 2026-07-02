@@ -193,3 +193,59 @@ $PrivacyRegistrySettings = @(
         EnabledBy = "DisableSuggestedContent"
     }
 )
+
+###########################################################################
+# Explorer registry settings
+###########################################################################
+
+$ExplorerRegistrySettings = @(
+    @{
+        Name      = "Show file extensions"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+        Key       = "HideFileExt"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "ShowFileExtensions"
+    },
+    @{
+        Name      = "Show hidden files"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+        Key       = "Hidden"
+        Type      = "DWord"
+        Value     = 1
+        EnabledBy = "ShowHiddenFiles"
+    },
+    @{
+        Name      = "Keep protected operating system files hidden"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+        Key       = "ShowSuperHidden"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "ShowProtectedOperatingSystemFiles"
+        Invert    = $true
+    },
+    @{
+        Name      = "Open Explorer to This PC"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+        Key       = "LaunchTo"
+        Type      = "DWord"
+        Value     = 1
+        EnabledBy = "OpenExplorerToThisPC"
+    },
+    @{
+        Name      = "Disable Recent Files"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
+        Key       = "ShowRecent"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "DisableExplorerRecentFiles"
+    },
+    @{
+        Name      = "Disable Frequent Folders"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
+        Key       = "ShowFrequent"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "DisableExplorerFrequentFolders"
+    }
+)

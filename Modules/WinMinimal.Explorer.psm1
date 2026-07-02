@@ -3,16 +3,16 @@
 #  WinMinimal
 #
 #  Module:
-#      WinMinimal.Privacy.psm1
+#      WinMinimal.Explorer.psm1
 #
 #  Description:
-#      Functions used to apply privacy-related Windows settings.
+#      Functions used to apply Windows File Explorer preferences.
 #
 ###########################################################################
 
-function Invoke-WMOptimizePrivacy {
+function Invoke-WMOptimizeExplorer {
     param(
-        [array]$PrivacyRegistrySettings,
+        [array]$ExplorerRegistrySettings,
         [hashtable]$Configuration,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
@@ -20,13 +20,13 @@ function Invoke-WMOptimizePrivacy {
         [hashtable]$Report
     )
 
-    Write-WMLog "Privacy settings selected: $($PrivacyRegistrySettings.Count)" $LogFile $EnableLogging
+    Write-WMLog "Explorer settings selected: $($ExplorerRegistrySettings.Count)" $LogFile $EnableLogging
 
-    foreach ($setting in $PrivacyRegistrySettings) {
+    foreach ($setting in $ExplorerRegistrySettings) {
         $enabledBy = $setting.EnabledBy
 
         if ($Configuration.ContainsKey($enabledBy) -and -not $Configuration[$enabledBy]) {
-            Write-WMLog "Skipping privacy setting disabled by configuration: $($setting.Name)" $LogFile $EnableLogging
+            Write-WMLog "Skipping Explorer setting disabled by configuration: $($setting.Name)" $LogFile $EnableLogging
             continue
         }
 
@@ -40,8 +40,8 @@ function Invoke-WMOptimizePrivacy {
             -EnableLogging $EnableLogging `
             -ContinueOnError $ContinueOnError `
             -Report $Report `
-            -ReportCounter "PrivacySettingsApplied"
+            -ReportCounter "ExplorerSettingsApplied"
     }
 
-    Write-WMLog "Privacy optimization completed." $LogFile $EnableLogging
+    Write-WMLog "Explorer optimization completed." $LogFile $EnableLogging
 }

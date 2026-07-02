@@ -17,7 +17,7 @@
 # Project settings
 
 $ProjectName    = "WinMinimal"
-$ProjectVersion = "0.3.0"
+$ProjectVersion = "0.4.0"
 
 # Root path
 
@@ -80,3 +80,14 @@ $DisableActivityHistory = $true
 $DisableTailoredExperiences = $true
 $DisableSuggestedContent = $true
 $DisableConsumerFeatures = $true
+
+# Explorer optimization
+
+$EnableExplorerOptimization = $true
+
+$ShowFileExtensions = $true
+$ShowHiddenFiles = $true
+$ShowProtectedOperatingSystemFiles = $false
+$DisableExplorerRecentFiles = $true
+$DisableExplorerFrequentFolders = $true
+$OpenExplorerToThisPC = $true

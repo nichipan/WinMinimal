@@ -24,17 +24,11 @@ Initialize-WMFolders -RootPath $RootPath
 
 $ScriptName = "Run-WinMinimal"
 
-$LogFile = New-WMLogFile `
-    -ScriptName $ScriptName `
-    -RootPath $RootPath `
-    -TimestampLogs $TimestampLogs
+$LogFile = New-WMLogFile -ScriptName $ScriptName -RootPath $RootPath -TimestampLogs $TimestampLogs
 
 $Report = New-WMReport -Name "WinMinimal"
 
-Write-WMHeader `
-    -ProjectName $ProjectName `
-    -ScriptName $ScriptName `
-    -Version $ProjectVersion
+Write-WMHeader -ProjectName $ProjectName -ScriptName $ScriptName -Version $ProjectVersion
 
 Write-WMLog "Starting WinMinimal runner." $LogFile $EnableLogging
 Write-WMLog "Active profile: $ActiveProfile" $LogFile $EnableLogging
@@ -51,6 +45,10 @@ $ScriptsToRun = @(
     @{
         Name = "Optimizing privacy"
         Path = "$RootPath\Scripts\Invoke-OptimizePrivacy.ps1"
+    },
+    @{
+        Name = "Optimizing Explorer"
+        Path = "$RootPath\Scripts\Invoke-OptimizeExplorer.ps1"
     }
 )
 
@@ -60,16 +58,11 @@ $totalScripts = $ScriptsToRun.Count
 $currentScript = 0
 
 foreach ($script in $ScriptsToRun) {
-
     $currentScript++
     $scriptNameToShow = $script.Name
     $scriptPath = $script.Path
 
-    Write-WMConsole `
-        -Message ("[{0}/{1}] {2}..." -f $currentScript, $totalScripts, $scriptNameToShow) `
-        -Level "Normal" `
-        -ConsoleVerbosity $ConsoleVerbosity `
-        -Color "Cyan"
+    Write-WMConsole -Message ("[{0}/{1}] {2}..." -f $currentScript, $totalScripts, $scriptNameToShow) -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity -Color "Cyan"
 
     if (-not (Test-Path $scriptPath)) {
         Write-WMWarning "Script not found: $scriptPath" $LogFile $EnableLogging $ConsoleVerbosity
@@ -81,25 +74,14 @@ foreach ($script in $ScriptsToRun) {
 
     try {
         & $scriptPath -Silent -Report $Report
-
         Add-WMReportValue -Report $Report -Key "ModulesExecuted"
-
         Write-WMLog "Script completed: $scriptPath" $LogFile $EnableLogging
-
-        Write-WMConsole `
-            -Message "Completed." `
-            -Level "Normal" `
-            -ConsoleVerbosity $ConsoleVerbosity `
-            -Color "Green"
-
-        Write-WMConsole `
-            -Message "" `
-            -Level "Normal" `
-            -ConsoleVerbosity $ConsoleVerbosity
+        Write-WMConsole -Message "Completed." -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity -Color "Green"
+        Write-WMConsole -Message "" -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity
     }
     catch {
-        Write-WMError "Script failed: $scriptPath - $($_.Exception.Message)" $LogFile $EnableLogging $ConsoleVerbosity
         Add-WMReportValue -Report $Report -Key "Errors"
+        Write-WMError "Script failed: $scriptPath - $($_.Exception.Message)" $LogFile $EnableLogging $ConsoleVerbosity
 
         if (-not $ContinueOnError) {
             throw

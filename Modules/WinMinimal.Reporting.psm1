@@ -16,25 +16,26 @@ function New-WMReport {
     )
 
     return @{
-        Name                   = $Name
-        StartTime              = Get-Date
-        EndTime                = $null
-        Status                 = "UNKNOWN"
+        Name                    = $Name
+        StartTime               = Get-Date
+        EndTime                 = $null
+        Status                  = "UNKNOWN"
 
-        ModulesPlanned         = 0
-        ModulesExecuted        = 0
+        ModulesPlanned          = 0
+        ModulesExecuted         = 0
 
-        ApplicationsProcessed  = 0
-        ApplicationsRemoved    = 0
+        ApplicationsProcessed   = 0
+        ApplicationsRemoved     = 0
 
-        ServicesDisabled       = 0
-        ServicesSetToManual    = 0
-        ScheduledTasksDisabled = 0
+        ServicesDisabled        = 0
+        ServicesSetToManual     = 0
+        ScheduledTasksDisabled  = 0
 
-        PrivacySettingsApplied = 0
+        PrivacySettingsApplied  = 0
+        ExplorerSettingsApplied = 0
 
-        Warnings               = 0
-        Errors                 = 0
+        Warnings                = 0
+        Errors                  = 0
     }
 }
 
@@ -106,6 +107,7 @@ function Show-WMReport {
     Write-Host ("Services set to Manual....... {0}" -f $Report["ServicesSetToManual"])
     Write-Host ("Scheduled tasks disabled..... {0}" -f $Report["ScheduledTasksDisabled"])
     Write-Host ("Privacy settings applied..... {0}" -f $Report["PrivacySettingsApplied"])
+    Write-Host ("Explorer settings applied.... {0}" -f $Report["ExplorerSettingsApplied"])
     Write-Host ("Warnings..................... {0}" -f $Report["Warnings"])
     Write-Host ("Errors....................... {0}" -f $Report["Errors"])
     Write-Host ("Execution time............... {0}" -f $duration.ToString("hh\:mm\:ss"))
