@@ -9,7 +9,7 @@
 #      Common helper functions used by WinMinimal scripts.
 #
 #  Version:
-#      0.1.0
+#      0.2.0
 #
 ###########################################################################
 
@@ -85,7 +85,7 @@ function Write-WMHeader {
         [string]$Version
     )
 
-    # Clear-Host
+    Write-Host ""
     Write-Host "==============================================="
     Write-Host " $ProjectName"
     Write-Host " $ScriptName"
@@ -101,61 +101,53 @@ function Write-WMLog {
         [bool]$EnableLogging = $true
     )
 
-    $line = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - $Message"
-
-    Write-Host $Message
-
-    if ($EnableLogging -and $LogFile) {
-        $line | Out-File -FilePath $LogFile -Append -Encoding UTF8
+    if (-not $EnableLogging -or -not $LogFile) {
+        return
     }
+
+    $line = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - $Message"
+    $line | Out-File -FilePath $LogFile -Append -Encoding UTF8
+}
+
+function Write-WMConsole {
+    param(
+        [string]$Message,
+        [string]$Level = "Normal",
+        [string]$ConsoleVerbosity = "Normal",
+        [string]$Color = "Gray"
+    )
+
+    if ($ConsoleVerbosity -eq "Quiet" -and $Level -ne "Summary") {
+        return
+    }
+
+    if ($ConsoleVerbosity -eq "Normal" -and $Level -eq "Detailed") {
+        return
+    }
+
+    Write-Host $Message -ForegroundColor $Color
 }
 
 function Write-WMWarning {
     param(
         [string]$Message,
         [string]$LogFile,
-        [bool]$EnableLogging = $true
+        [bool]$EnableLogging = $true,
+        [string]$ConsoleVerbosity = "Normal"
     )
 
-    Write-Host "WARNING: $Message" -ForegroundColor Yellow
-
-    if ($EnableLogging -and $LogFile) {
-        "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - WARNING: $Message" |
-            Out-File -FilePath $LogFile -Append -Encoding UTF8
-    }
+    Write-WMConsole -Message "WARNING: $Message" -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity -Color "Yellow"
+    Write-WMLog -Message "WARNING: $Message" -LogFile $LogFile -EnableLogging $EnableLogging
 }
 
 function Write-WMError {
     param(
         [string]$Message,
         [string]$LogFile,
-        [bool]$EnableLogging = $true
+        [bool]$EnableLogging = $true,
+        [string]$ConsoleVerbosity = "Normal"
     )
 
-    Write-Host "ERROR: $Message" -ForegroundColor Red
-
-    if ($EnableLogging -and $LogFile) {
-        "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') - ERROR: $Message" |
-            Out-File -FilePath $LogFile -Append -Encoding UTF8
-    }
-}
-
-function Import-WMConfiguration {
-    param(
-        [string]$RootPath = "C:\WinMinimal"
-    )
-
-    $configFile = "$RootPath\Config\Config.ps1"
-    $defaultsFile = "$RootPath\Config\Defaults.ps1"
-
-    if (-not (Test-Path $configFile)) {
-        throw "Configuration file not found: $configFile"
-    }
-
-    if (-not (Test-Path $defaultsFile)) {
-        throw "Defaults file not found: $defaultsFile"
-    }
-
-    . $configFile
-    . $defaultsFile
+    Write-WMConsole -Message "ERROR: $Message" -Level "Normal" -ConsoleVerbosity $ConsoleVerbosity -Color "Red"
+    Write-WMLog -Message "ERROR: $Message" -LogFile $LogFile -EnableLogging $EnableLogging
 }

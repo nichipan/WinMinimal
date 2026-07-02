@@ -10,9 +10,14 @@
 #      tasks according to the active WinMinimal configuration.
 #
 #  Version:
-#      0.1.0
+#      0.2.3
 #
 ###########################################################################
+
+param(
+    [switch]$Silent,
+    [hashtable]$Report
+)
 
 $RootPath = "C:\WinMinimal"
 
@@ -32,20 +37,14 @@ $LogFile = New-WMLogFile `
     -RootPath $RootPath `
     -TimestampLogs $TimestampLogs
 
-Write-WMHeader `
-    -ProjectName $ProjectName `
-    -ScriptName $ScriptName `
-    -Version $ProjectVersion
+if (-not $Silent) {
+    Write-WMHeader -ProjectName $ProjectName -ScriptName $ScriptName -Version $ProjectVersion
+}
 
 Write-WMLog "Starting startup optimization." $LogFile $EnableLogging
 Write-WMLog "Active profile: $ActiveProfile" $LogFile $EnableLogging
 
-#
-# Build the service lists according to the selected configuration.
-#
-
 $ServicesToDisable = @()
-
 $ServicesToDisable += $DefaultServicesToDisable
 
 if ($DisableTelemetry) {
@@ -65,41 +64,37 @@ if ($RemoveXboxComponents) {
 }
 
 if ($EnableServiceOptimization) {
-
     Invoke-WMOptimizeServices `
         -ServicesToDisable $ServicesToDisable `
         -ServicesToManual $ServicesToManual `
         -LogFile $LogFile `
         -EnableLogging $EnableLogging `
-        -ContinueOnError $ContinueOnError
-
+        -ContinueOnError $ContinueOnError `
+        -Report $Report
 }
 else {
-
     Write-WMLog "Service optimization disabled by configuration." $LogFile $EnableLogging
-
 }
 
 if ($EnableScheduledTaskOptimization) {
-
     Invoke-WMOptimizeScheduledTasks `
         -ScheduledTasksToDisable $ScheduledTasksToDisable `
         -LogFile $LogFile `
         -EnableLogging $EnableLogging `
-        -ContinueOnError $ContinueOnError
-
+        -ContinueOnError $ContinueOnError `
+        -Report $Report
 }
 else {
-
     Write-WMLog "Scheduled task optimization disabled by configuration." $LogFile $EnableLogging
-
 }
 
 Write-WMLog "Startup optimization completed." $LogFile $EnableLogging
 Write-WMLog "Log file: $LogFile" $LogFile $EnableLogging
 
-Write-Host ""
-Write-Host "Done."
-Write-Host "Log file:"
-Write-Host $LogFile
-Write-Host ""
+if (-not $Silent) {
+    Write-Host ""
+    Write-Host "Done."
+    Write-Host "Log file:"
+    Write-Host $LogFile
+    Write-Host ""
+}

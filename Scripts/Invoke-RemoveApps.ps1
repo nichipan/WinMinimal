@@ -10,9 +10,14 @@
 #      according to the active WinMinimal configuration.
 #
 #  Version:
-#      0.1.1
+#      0.2.3
 #
 ###########################################################################
+
+param(
+    [switch]$Silent,
+    [hashtable]$Report
+)
 
 $RootPath = "C:\WinMinimal"
 
@@ -28,7 +33,9 @@ Initialize-WMFolders -RootPath $RootPath
 $ScriptName = "Invoke-RemoveApps"
 $LogFile = New-WMLogFile -ScriptName $ScriptName -RootPath $RootPath -TimestampLogs $TimestampLogs
 
-Write-WMHeader -ProjectName $ProjectName -ScriptName $ScriptName -Version $ProjectVersion
+if (-not $Silent) {
+    Write-WMHeader -ProjectName $ProjectName -ScriptName $ScriptName -Version $ProjectVersion
+}
 
 Write-WMLog "Starting application removal." $LogFile $EnableLogging
 Write-WMLog "Active profile: $ActiveProfile" $LogFile $EnableLogging
@@ -53,13 +60,16 @@ else {
         -LogFile $LogFile `
         -EnableLogging $EnableLogging `
         -ContinueOnError $ContinueOnError `
-        -RemoveProvisionedPackages $RemoveProvisionedPackages
+        -RemoveProvisionedPackages $RemoveProvisionedPackages `
+        -Report $Report
 }
 
 Write-WMLog "Finished application removal." $LogFile $EnableLogging
 Write-WMLog "Log file: $LogFile" $LogFile $EnableLogging
 
-Write-Host ""
-Write-Host "Done."
-Write-Host "Log file: $LogFile"
-Write-Host ""
+if (-not $Silent) {
+    Write-Host ""
+    Write-Host "Done."
+    Write-Host "Log file: $LogFile"
+    Write-Host ""
+}

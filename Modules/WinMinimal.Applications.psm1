@@ -10,7 +10,7 @@
 #      AppX packages.
 #
 #  Version:
-#      0.1.1
+#      0.2.3
 #
 ###########################################################################
 
@@ -19,7 +19,8 @@ function Remove-WMInstalledApp {
         [string]$AppName,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $packages = Get-AppxPackage -AllUsers "*$AppName*" -ErrorAction SilentlyContinue
@@ -35,9 +36,17 @@ function Remove-WMInstalledApp {
         try {
             Remove-AppxPackage -Package $package.PackageFullName -AllUsers -ErrorAction Stop
             Write-WMLog "Removed installed package: $($package.Name)" $LogFile $EnableLogging
+
+            if ($Report) {
+                $Report["ApplicationsRemoved"]++
+            }
         }
         catch {
             Write-WMWarning "Could not remove installed package: $($package.Name) - $($_.Exception.Message)" $LogFile $EnableLogging
+
+            if ($Report) {
+                $Report["Warnings"]++
+            }
 
             if (-not $ContinueOnError) {
                 throw
@@ -51,7 +60,8 @@ function Remove-WMProvisionedApp {
         [string]$AppName,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $packages = Get-AppxProvisionedPackage -Online |
@@ -68,9 +78,17 @@ function Remove-WMProvisionedApp {
         try {
             Remove-AppxProvisionedPackage -Online -PackageName $package.PackageName -ErrorAction Stop | Out-Null
             Write-WMLog "Removed provisioned package: $($package.DisplayName)" $LogFile $EnableLogging
+
+            if ($Report) {
+                $Report["ApplicationsRemoved"]++
+            }
         }
         catch {
             Write-WMWarning "Could not remove provisioned package: $($package.DisplayName) - $($_.Exception.Message)" $LogFile $EnableLogging
+
+            if ($Report) {
+                $Report["Warnings"]++
+            }
 
             if (-not $ContinueOnError) {
                 throw
@@ -85,7 +103,8 @@ function Invoke-WMRemoveApps {
         [string]$LogFile,
         [bool]$EnableLogging = $true,
         [bool]$ContinueOnError = $true,
-        [bool]$RemoveProvisionedPackages = $true
+        [bool]$RemoveProvisionedPackages = $true,
+        [hashtable]$Report
     )
 
     $apps = $AppsToRemove | Sort-Object -Unique
@@ -93,20 +112,26 @@ function Invoke-WMRemoveApps {
     Write-WMLog "Applications selected for removal: $($apps.Count)" $LogFile $EnableLogging
 
     foreach ($app in $apps) {
+        if ($Report) {
+            $Report["ApplicationsProcessed"]++
+        }
+
         Write-WMLog "Processing application pattern: $app" $LogFile $EnableLogging
 
         Remove-WMInstalledApp `
             -AppName $app `
             -LogFile $LogFile `
             -EnableLogging $EnableLogging `
-            -ContinueOnError $ContinueOnError
+            -ContinueOnError $ContinueOnError `
+            -Report $Report
 
         if ($RemoveProvisionedPackages) {
             Remove-WMProvisionedApp `
                 -AppName $app `
                 -LogFile $LogFile `
                 -EnableLogging $EnableLogging `
-                -ContinueOnError $ContinueOnError
+                -ContinueOnError $ContinueOnError `
+                -Report $Report
         }
         else {
             Write-WMLog "Provisioned package removal disabled by configuration." $LogFile $EnableLogging

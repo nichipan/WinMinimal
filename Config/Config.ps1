@@ -13,14 +13,14 @@
 #      Defaults.ps1.
 #
 #  Version:
-#      0.1.0
+#      0.2.3
 #
 ###########################################################################
 
 # Project settings
 
 $ProjectName    = "WinMinimal"
-$ProjectVersion = "0.1.0"
+$ProjectVersion = "0.2.3"
 
 # Root path
 
@@ -40,6 +40,17 @@ $ActiveProfile = "HTPC"
 
 $EnableLogging = $true
 $TimestampLogs = $true
+
+# Console output verbosity.
+#
+# Quiet    : final summary only
+# Normal   : progress + final summary
+# Detailed : full execution details
+#
+# Recommended value:
+#   Normal
+
+$ConsoleVerbosity = "Normal"
 
 # Safety
 

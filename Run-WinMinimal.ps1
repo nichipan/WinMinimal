@@ -11,13 +11,14 @@
 #      Executes the enabled WinMinimal scripts in the defined order.
 #
 #  Version:
-#      0.1.0
+#      0.2.3
 #
 ###########################################################################
 
 $RootPath = "C:\WinMinimal"
 
 Import-Module "$RootPath\Modules\WinMinimal.Common.psm1" -Force
+Import-Module "$RootPath\Modules\WinMinimal.Reporting.psm1" -Force
 
 . "$RootPath\Config\Config.ps1"
 
@@ -31,6 +32,8 @@ $LogFile = New-WMLogFile `
     -RootPath $RootPath `
     -TimestampLogs $TimestampLogs
 
+$Report = New-WMReport -Name "WinMinimal"
+
 Write-WMHeader `
     -ProjectName $ProjectName `
     -ScriptName $ScriptName `
@@ -40,25 +43,58 @@ Write-WMLog "Starting WinMinimal runner." $LogFile $EnableLogging
 Write-WMLog "Active profile: $ActiveProfile" $LogFile $EnableLogging
 
 $ScriptsToRun = @(
-    "$RootPath\Scripts\Invoke-RemoveApps.ps1",
-    "$RootPath\Scripts\Invoke-OptimizeStartup.ps1"
+    @{
+        Name = "Removing applications"
+        Path = "$RootPath\Scripts\Invoke-RemoveApps.ps1"
+    },
+    @{
+        Name = "Optimizing startup"
+        Path = "$RootPath\Scripts\Invoke-OptimizeStartup.ps1"
+    }
 )
+
+$totalScripts = $ScriptsToRun.Count
+$currentScript = 0
 
 foreach ($script in $ScriptsToRun) {
 
-    if (-not (Test-Path $script)) {
-        Write-WMWarning "Script not found: $script" $LogFile $EnableLogging
+    $currentScript++
+    $scriptNameToShow = $script.Name
+    $scriptPath = $script.Path
+
+    Write-WMConsole `
+        -Message ("[{0}/{1}] {2}..." -f $currentScript, $totalScripts, $scriptNameToShow) `
+        -Level "Normal" `
+        -ConsoleVerbosity $ConsoleVerbosity `
+        -Color "Cyan"
+
+    if (-not (Test-Path $scriptPath)) {
+        Write-WMWarning "Script not found: $scriptPath" $LogFile $EnableLogging $ConsoleVerbosity
+        Add-WMReportValue -Report $Report -Key "Warnings"
         continue
     }
 
-    Write-WMLog "Executing script: $script" $LogFile $EnableLogging
+    Write-WMLog "Executing script: $scriptPath" $LogFile $EnableLogging
 
     try {
-        & $script
-        Write-WMLog "Script completed: $script" $LogFile $EnableLogging
+        & $scriptPath -Silent -Report $Report
+
+        Write-WMLog "Script completed: $scriptPath" $LogFile $EnableLogging
+
+        Write-WMConsole `
+            -Message "Completed." `
+            -Level "Normal" `
+            -ConsoleVerbosity $ConsoleVerbosity `
+            -Color "Green"
+
+        Write-WMConsole `
+            -Message "" `
+            -Level "Normal" `
+            -ConsoleVerbosity $ConsoleVerbosity
     }
     catch {
-        Write-WMError "Script failed: $script - $($_.Exception.Message)" $LogFile $EnableLogging
+        Write-WMError "Script failed: $scriptPath - $($_.Exception.Message)" $LogFile $EnableLogging $ConsoleVerbosity
+        Add-WMReportValue -Report $Report -Key "Errors"
 
         if (-not $ContinueOnError) {
             throw
@@ -66,11 +102,9 @@ foreach ($script in $ScriptsToRun) {
     }
 }
 
+Complete-WMReport -Report $Report
+
 Write-WMLog "WinMinimal runner completed." $LogFile $EnableLogging
 Write-WMLog "Log file: $LogFile" $LogFile $EnableLogging
 
-Write-Host ""
-Write-Host "WinMinimal completed."
-Write-Host "Main log file:"
-Write-Host $LogFile
-Write-Host ""
+Show-WMReport -Report $Report -LogFile $LogFile

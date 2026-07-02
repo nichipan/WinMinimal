@@ -9,7 +9,7 @@
 #      Functions used to optimize Windows services and scheduled tasks.
 #
 #  Version:
-#      0.1.0
+#      0.2.3
 #
 ###########################################################################
 
@@ -19,7 +19,8 @@ function Set-WMServiceStartupType {
         [string]$StartupType,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
@@ -34,9 +35,23 @@ function Set-WMServiceStartupType {
     try {
         Set-Service -Name $ServiceName -StartupType $StartupType -ErrorAction Stop
         Write-WMLog "Service updated: $ServiceName" $LogFile $EnableLogging
+
+        if ($Report) {
+            if ($StartupType -eq "Disabled") {
+                $Report["ServicesDisabled"]++
+            }
+
+            if ($StartupType -eq "Manual") {
+                $Report["ServicesSetToManual"]++
+            }
+        }
     }
     catch {
         Write-WMWarning "Could not update service: $ServiceName - $($_.Exception.Message)" $LogFile $EnableLogging
+
+        if ($Report) {
+            $Report["Warnings"]++
+        }
 
         if (-not $ContinueOnError) {
             throw
@@ -49,7 +64,8 @@ function Disable-WMScheduledTask {
         [string]$TaskFullPath,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $taskName = Split-Path $TaskFullPath -Leaf
@@ -67,9 +83,17 @@ function Disable-WMScheduledTask {
     try {
         Disable-ScheduledTask -TaskPath $taskPath -TaskName $taskName -ErrorAction Stop | Out-Null
         Write-WMLog "Scheduled task disabled: $TaskFullPath" $LogFile $EnableLogging
+
+        if ($Report) {
+            $Report["ScheduledTasksDisabled"]++
+        }
     }
     catch {
         Write-WMWarning "Could not disable scheduled task: $TaskFullPath - $($_.Exception.Message)" $LogFile $EnableLogging
+
+        if ($Report) {
+            $Report["Warnings"]++
+        }
 
         if (-not $ContinueOnError) {
             throw
@@ -83,7 +107,8 @@ function Invoke-WMOptimizeServices {
         [string[]]$ServicesToManual,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $disableList = $ServicesToDisable | Sort-Object -Unique
@@ -97,7 +122,8 @@ function Invoke-WMOptimizeServices {
             -StartupType "Disabled" `
             -LogFile $LogFile `
             -EnableLogging $EnableLogging `
-            -ContinueOnError $ContinueOnError
+            -ContinueOnError $ContinueOnError `
+            -Report $Report
     }
 
     Write-WMLog "Services selected for manual startup: $($manualList.Count)" $LogFile $EnableLogging
@@ -108,7 +134,8 @@ function Invoke-WMOptimizeServices {
             -StartupType "Manual" `
             -LogFile $LogFile `
             -EnableLogging $EnableLogging `
-            -ContinueOnError $ContinueOnError
+            -ContinueOnError $ContinueOnError `
+            -Report $Report
     }
 
     Write-WMLog "Service optimization completed." $LogFile $EnableLogging
@@ -119,7 +146,8 @@ function Invoke-WMOptimizeScheduledTasks {
         [string[]]$ScheduledTasksToDisable,
         [string]$LogFile,
         [bool]$EnableLogging = $true,
-        [bool]$ContinueOnError = $true
+        [bool]$ContinueOnError = $true,
+        [hashtable]$Report
     )
 
     $tasks = $ScheduledTasksToDisable | Sort-Object -Unique
@@ -131,7 +159,8 @@ function Invoke-WMOptimizeScheduledTasks {
             -TaskFullPath $task `
             -LogFile $LogFile `
             -EnableLogging $EnableLogging `
-            -ContinueOnError $ContinueOnError
+            -ContinueOnError $ContinueOnError `
+            -Report $Report
     }
 
     Write-WMLog "Scheduled task optimization completed." $LogFile $EnableLogging
