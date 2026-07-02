@@ -11,7 +11,7 @@
 #      Executes the enabled WinMinimal scripts in the defined order.
 #
 #  Version:
-#      0.2.3
+#      0.2.4
 #
 ###########################################################################
 
@@ -53,6 +53,8 @@ $ScriptsToRun = @(
     }
 )
 
+$Report["ModulesPlanned"] = $ScriptsToRun.Count
+
 $totalScripts = $ScriptsToRun.Count
 $currentScript = 0
 
@@ -78,6 +80,8 @@ foreach ($script in $ScriptsToRun) {
 
     try {
         & $scriptPath -Silent -Report $Report
+
+        Add-WMReportValue -Report $Report -Key "ModulesExecuted"
 
         Write-WMLog "Script completed: $scriptPath" $LogFile $EnableLogging
 
@@ -105,6 +109,7 @@ foreach ($script in $ScriptsToRun) {
 Complete-WMReport -Report $Report
 
 Write-WMLog "WinMinimal runner completed." $LogFile $EnableLogging
+Write-WMLog "Status: $($Report["Status"])" $LogFile $EnableLogging
 Write-WMLog "Log file: $LogFile" $LogFile $EnableLogging
 
 Show-WMReport -Report $Report -LogFile $LogFile

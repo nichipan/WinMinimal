@@ -13,14 +13,14 @@
 #      Defaults.ps1.
 #
 #  Version:
-#      0.2.3
+#      0.2.4
 #
 ###########################################################################
 
 # Project settings
 
 $ProjectName    = "WinMinimal"
-$ProjectVersion = "0.2.3"
+$ProjectVersion = "0.2.4"
 
 # Root path
 
