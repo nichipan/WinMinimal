@@ -1,8 +1,8 @@
-\# Applications Module Reference
+# Applications Module Reference
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -10,7 +10,7 @@ The Applications module removes unwanted Microsoft AppX packages from Windows.
 
 
 
-The primary goal is \*\*not\*\* to remove as much software as possible, but to
+The primary goal is **not** to remove as much software as possible, but to
 
 provide a clean, lightweight and reproducible Windows installation suitable
 
@@ -26,23 +26,23 @@ The module is:
 
 
 
-\* Configuration-driven
+* Configuration-driven
 
-\* Safe by default
+* Safe by default
 
-\* Idempotent
+* Idempotent
 
-\* Fully logged
+* Fully logged
 
-\* Report-aware
-
-
-
-\---
+* Report-aware
 
 
 
-\# Removal Strategy
+---
+
+
+
+# Removal Strategy
 
 
 
@@ -50,7 +50,7 @@ WinMinimal performs two different operations.
 
 
 
-\## Installed Packages
+## Installed Packages
 
 
 
@@ -70,11 +70,11 @@ Get-AppxPackage
 
 
 
-\---
+---
 
 
 
-\## Provisioned Packages
+## Provisioned Packages
 
 
 
@@ -96,11 +96,11 @@ Get-AppxProvisionedPackage -Online
 
 
 
-\---
+---
 
 
 
-\# Current Applications
+# Current Applications
 
 
 
@@ -110,7 +110,7 @@ The current application list is maintained in:
 
 ```text
 
-Config\\Defaults.ps1
+Config\Defaults.ps1
 
 ```
 
@@ -120,43 +120,43 @@ The list currently includes packages such as:
 
 
 
-\* Clipchamp
+* Clipchamp
 
-\* Bing News
+* Bing News
 
-\* Bing Weather
+* Bing Weather
 
-\* Copilot
+* Copilot
 
-\* Dev Home
+* Dev Home
 
-\* Gaming App
+* Gaming App
 
-\* Gaming Services
+* Gaming Services
 
-\* Get Help
+* Get Help
 
-\* Get Started
+* Get Started
 
-\* Microsoft Teams
+* Microsoft Teams
 
-\* Outlook for Windows
+* Outlook for Windows
 
-\* People
+* People
 
-\* Power Automate Desktop
+* Power Automate Desktop
 
-\* To Do
+* To Do
 
-\* Windows Maps
+* Windows Maps
 
-\* Windows Feedback Hub
+* Windows Feedback Hub
 
-\* Xbox components
+* Xbox components
 
-\* Groove Music
+* Groove Music
 
-\* Movies \& TV
+* Movies \& TV
 
 
 
@@ -164,11 +164,11 @@ The exact list may evolve between releases.
 
 
 
-\---
+---
 
 
 
-\# Safety
+# Safety
 
 
 
@@ -188,11 +188,11 @@ Running the module multiple times is safe.
 
 
 
-\---
+---
 
 
 
-\# Configuration
+# Configuration
 
 
 
@@ -214,11 +214,11 @@ $RemoveXboxComponents = $true
 
 
 
-\---
+---
 
 
 
-\# Logging
+# Logging
 
 
 
@@ -230,21 +230,21 @@ Examples:
 
 
 
-\* Package found
+* Package found
 
-\* Package removed
+* Package removed
 
-\* Package already absent
+* Package already absent
 
-\* Removal failed
-
-
-
-\---
+* Removal failed
 
 
 
-\# Reporting
+---
+
+
+
+# Reporting
 
 
 
@@ -252,13 +252,13 @@ The module contributes the following execution counters:
 
 
 
-\* Applications processed
+* Applications processed
 
-\* Applications removed
+* Applications removed
 
-\* Warnings
+* Warnings
 
-\* Errors
+* Errors
 
 
 
@@ -266,11 +266,11 @@ These values appear in the final execution summary.
 
 
 
-\---
+---
 
 
 
-\# Future Improvements
+# Future Improvements
 
 
 
@@ -278,31 +278,28 @@ Future versions may introduce:
 
 
 
-\* Optional package categories
+* Optional package categories
 
-\* Dry-run mode
+* Dry-run mode
 
-\* Interactive confirmation
+* Interactive confirmation
 
-\* Custom application lists
+* Custom application lists
 
-\* Export of removed packages
-
-
-
-\---
+* Export of removed packages
 
 
 
-\# References
+---
 
 
 
-\* Microsoft AppX documentation.
-
-\* Microsoft DISM provisioning documentation.
-
-\* WinMinimal source code (`WinMinimal.Applications.psm1`).
+# References
 
 
 
+* Microsoft AppX documentation.
+
+* Microsoft DISM provisioning documentation.
+
+* WinMinimal source code (`WinMinimal.Applications.psm1`).

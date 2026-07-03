@@ -1,8 +1,8 @@
-\# Explorer Module Reference
+# Explorer Module Reference
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -28,23 +28,23 @@ The module follows the WinMinimal design principles:
 
 
 
-\* Safe by default
+* Safe by default
 
-\* Configuration-driven
+* Configuration-driven
 
-\* Idempotent
+* Idempotent
 
-\* Fully logged
+* Fully logged
 
-\* Report-aware
-
-
-
-\---
+* Report-aware
 
 
 
-\# Explorer Settings Summary
+---
+
+
+
+# Explorer Settings Summary
 
 
 
@@ -66,15 +66,15 @@ The module follows the WinMinimal design principles:
 
 
 
-\---
+---
 
 
 
-\# Show File Extensions
+# Show File Extensions
 
 
 
-\## Configuration
+## Configuration
 
 
 
@@ -86,7 +86,7 @@ $ShowFileExtensions = $true
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -94,27 +94,27 @@ Always display file name extensions.
 
 
 
-\## Benefits
+## Benefits
 
 
 
-\* Improves security.
+* Improves security.
 
-\* Makes file types immediately visible.
+* Makes file types immediately visible.
 
-\* Avoids confusion caused by hidden extensions.
-
-
-
-\---
+* Avoids confusion caused by hidden extensions.
 
 
 
-\# Show Hidden Files
+---
 
 
 
-\## Configuration
+# Show Hidden Files
+
+
+
+## Configuration
 
 
 
@@ -126,7 +126,7 @@ $ShowHiddenFiles = $true
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -134,7 +134,7 @@ Displays hidden files and folders.
 
 
 
-\## Benefits
+## Benefits
 
 
 
@@ -142,15 +142,15 @@ Useful for troubleshooting, scripting and system administration.
 
 
 
-\---
+---
 
 
 
-\# Hide Protected Operating System Files
+# Hide Protected Operating System Files
 
 
 
-\## Configuration
+## Configuration
 
 
 
@@ -162,7 +162,7 @@ $ShowProtectedOperatingSystemFiles = $false
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -170,7 +170,7 @@ Keeps critical operating system files hidden.
 
 
 
-\## Benefits
+## Benefits
 
 
 
@@ -178,15 +178,15 @@ Reduces the risk of accidental deletion.
 
 
 
-\---
+---
 
 
 
-\# Open Explorer to This PC
+# Open Explorer to This PC
 
 
 
-\## Configuration
+## Configuration
 
 
 
@@ -198,15 +198,15 @@ $OpenExplorerToThisPC = $true
 
 
 
-\## Purpose
+## Purpose
 
 
 
-Opens File Explorer directly on \*\*This PC\*\* instead of \*\*Home\*\*.
+Opens File Explorer directly on **This PC** instead of **Home**.
 
 
 
-\## Benefits
+## Benefits
 
 
 
@@ -214,15 +214,15 @@ Provides immediate access to drives and mounted volumes.
 
 
 
-\---
+---
 
 
 
-\# Disable Recent Files
+# Disable Recent Files
 
 
 
-\## Configuration
+## Configuration
 
 
 
@@ -234,7 +234,7 @@ $DisableExplorerRecentFiles = $true
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -242,25 +242,25 @@ Disables the Recent Files section shown by File Explorer.
 
 
 
-\## Benefits
+## Benefits
 
 
 
-\* Improves privacy.
+* Improves privacy.
 
-\* Reduces visual clutter.
-
-
-
-\---
+* Reduces visual clutter.
 
 
 
-\# Disable Frequent Folders
+---
 
 
 
-\## Configuration
+# Disable Frequent Folders
+
+
+
+## Configuration
 
 
 
@@ -272,7 +272,7 @@ $DisableExplorerFrequentFolders = $true
 
 
 
-\## Purpose
+## Purpose
 
 
 
@@ -280,7 +280,7 @@ Disables the Frequent Folders section.
 
 
 
-\## Benefits
+## Benefits
 
 
 
@@ -288,11 +288,11 @@ Provides a cleaner Explorer interface.
 
 
 
-\---
+---
 
 
 
-\# Safety
+# Safety
 
 
 
@@ -308,11 +308,11 @@ All settings are reversible.
 
 
 
-\---
+---
 
 
 
-\# Logging
+# Logging
 
 
 
@@ -320,11 +320,11 @@ Every applied Explorer setting is written to the execution log.
 
 
 
-\---
+---
 
 
 
-\# Reporting
+# Reporting
 
 
 
@@ -332,11 +332,11 @@ The module will contribute its own execution counters in the WinMinimal summary.
 
 
 
-\---
+---
 
 
 
-\# Future Improvements
+# Future Improvements
 
 
 
@@ -344,39 +344,36 @@ Possible future settings include:
 
 
 
-\* Compact View
+* Compact View
 
-\* Launch folder windows in a separate process
+* Launch folder windows in a separate process
 
-\* Navigation Pane customization
+* Navigation Pane customization
 
-\* Preview Pane
+* Preview Pane
 
-\* Details Pane
+* Details Pane
 
-\* Default folder view
+* Default folder view
 
-\* Explorer context menu options
+* Explorer context menu options
 
-\* Classic context menu
+* Classic context menu
 
-\* Ribbon / command bar customization
-
-
-
-\---
+* Ribbon / command bar customization
 
 
 
-\# References
+---
 
 
 
-\* Microsoft File Explorer documentation.
-
-\* Microsoft Windows Shell documentation.
-
-\* WinMinimal source code (`WinMinimal.Explorer.psm1`).
+# References
 
 
 
+* Microsoft File Explorer documentation.
+
+* Microsoft Windows Shell documentation.
+
+* WinMinimal source code (`WinMinimal.Explorer.psm1`).

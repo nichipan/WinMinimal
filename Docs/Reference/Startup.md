@@ -1,8 +1,8 @@
-\# Startup Module Reference
+# Startup Module Reference
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -12,7 +12,7 @@ Windows services and scheduled tasks.
 
 
 
-The objective is \*\*not\*\* to disable as many services as possible, but to
+The objective is **not** to disable as many services as possible, but to
 
 disable or reduce only those that are unnecessary for the target system.
 
@@ -22,23 +22,23 @@ The module follows the WinMinimal design principles:
 
 
 
-\* Safe by default
+* Safe by default
 
-\* Configuration-driven
+* Configuration-driven
 
-\* Idempotent
+* Idempotent
 
-\* Fully logged
+* Fully logged
 
-\* Report-aware
-
-
-
-\---
+* Report-aware
 
 
 
-\# Optimization Strategy
+---
+
+
+
+# Optimization Strategy
 
 
 
@@ -46,9 +46,9 @@ The module performs two independent operations:
 
 
 
-\* Windows Services optimization
+* Windows Services optimization
 
-\* Scheduled Tasks optimization
+* Scheduled Tasks optimization
 
 
 
@@ -56,11 +56,11 @@ Each operation can be enabled or disabled independently.
 
 
 
-\---
+---
 
 
 
-\# Windows Services
+# Windows Services
 
 
 
@@ -72,11 +72,11 @@ Possible startup types are:
 
 
 
-\* Automatic
+* Automatic
 
-\* Manual
+* Manual
 
-\* Disabled
+* Disabled
 
 
 
@@ -84,11 +84,11 @@ Only services explicitly defined in the configuration are modified.
 
 
 
-\---
+---
 
 
 
-\# Service Categories
+# Service Categories
 
 
 
@@ -96,7 +96,7 @@ The current service list includes categories such as:
 
 
 
-\## Telemetry
+## Telemetry
 
 
 
@@ -104,9 +104,9 @@ Examples:
 
 
 
-\* DiagTrack
+* DiagTrack
 
-\* InventorySvc
+* InventorySvc
 
 
 
@@ -118,11 +118,11 @@ Reduces Windows telemetry and background diagnostics.
 
 
 
-\---
+---
 
 
 
-\## Xbox
+## Xbox
 
 
 
@@ -130,13 +130,13 @@ Examples:
 
 
 
-\* XblAuthManager
+* XblAuthManager
 
-\* XblGameSave
+* XblGameSave
 
-\* XboxGipSvc
+* XboxGipSvc
 
-\* XboxNetApiSvc
+* XboxNetApiSvc
 
 
 
@@ -148,11 +148,11 @@ Disables Xbox-related background services on systems where gaming is not require
 
 
 
-\---
+---
 
 
 
-\## Search
+## Search
 
 
 
@@ -160,7 +160,7 @@ Example:
 
 
 
-\* WSearch
+* WSearch
 
 
 
@@ -176,11 +176,11 @@ Recommended for HTPC and appliance-like systems.
 
 
 
-\---
+---
 
 
 
-\## SysMain
+## SysMain
 
 
 
@@ -188,7 +188,7 @@ Example:
 
 
 
-\* SysMain
+* SysMain
 
 
 
@@ -204,11 +204,11 @@ Useful on systems equipped with SSD storage where SysMain provides little benefi
 
 
 
-\---
+---
 
 
 
-\## Miscellaneous
+## Miscellaneous
 
 
 
@@ -216,23 +216,23 @@ Other services are disabled because they provide functionality that is not requi
 
 
 
-\* Fax
+* Fax
 
-\* MapsBroker
+* MapsBroker
 
-\* PhoneSvc
+* PhoneSvc
 
-\* RetailDemo
+* RetailDemo
 
-\* WalletService
-
-
-
-\---
+* WalletService
 
 
 
-\# Scheduled Tasks
+---
+
+
+
+# Scheduled Tasks
 
 
 
@@ -246,11 +246,11 @@ Current categories include:
 
 
 
-\* Customer Experience Improvement Program
+* Customer Experience Improvement Program
 
-\* Feedback
+* Feedback
 
-\* Maps
+* Maps
 
 
 
@@ -258,11 +258,11 @@ Additional tasks may be added in future releases.
 
 
 
-\---
+---
 
 
 
-\# Configuration
+# Configuration
 
 
 
@@ -296,17 +296,17 @@ The complete list of services and scheduled tasks is maintained in:
 
 ```text
 
-Config\\Defaults.ps1
+Config\Defaults.ps1
 
 ```
 
 
 
-\---
+---
 
 
 
-\# Safety
+# Safety
 
 
 
@@ -322,11 +322,11 @@ Missing services or scheduled tasks are skipped automatically.
 
 
 
-\---
+---
 
 
 
-\# Logging
+# Logging
 
 
 
@@ -334,15 +334,15 @@ The module records:
 
 
 
-\* services modified
+* services modified
 
-\* startup type changes
+* startup type changes
 
-\* scheduled tasks disabled
+* scheduled tasks disabled
 
-\* warnings
+* warnings
 
-\* errors
+* errors
 
 
 
@@ -350,11 +350,11 @@ All details are written to the execution log.
 
 
 
-\---
+---
 
 
 
-\# Reporting
+# Reporting
 
 
 
@@ -362,15 +362,15 @@ The module contributes the following execution counters:
 
 
 
-\* Services disabled
+* Services disabled
 
-\* Services set to Manual
+* Services set to Manual
 
-\* Scheduled tasks disabled
+* Scheduled tasks disabled
 
-\* Warnings
+* Warnings
 
-\* Errors
+* Errors
 
 
 
@@ -378,11 +378,11 @@ These values are displayed in the WinMinimal execution summary.
 
 
 
-\---
+---
 
 
 
-\# Future Improvements
+# Future Improvements
 
 
 
@@ -390,31 +390,28 @@ Future versions may introduce:
 
 
 
-\* Startup optimization profiles
+* Startup optimization profiles
 
-\* Automatic service backup
+* Automatic service backup
 
-\* Restore capability
+* Restore capability
 
-\* Service dependency analysis
+* Service dependency analysis
 
-\* Optional optimization levels
-
-
-
-\---
+* Optional optimization levels
 
 
 
-\# References
+---
 
 
 
-\* Microsoft Service Control Manager documentation.
-
-\* Microsoft Scheduled Tasks documentation.
-
-\* WinMinimal source code (`WinMinimal.Services.psm1`).
+# References
 
 
 
+* Microsoft Service Control Manager documentation.
+
+* Microsoft Scheduled Tasks documentation.
+
+* WinMinimal source code (`WinMinimal.Services.psm1`).
