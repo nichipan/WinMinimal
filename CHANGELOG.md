@@ -1,158 +1,88 @@
-\# Changelog
-
-
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
+The format is inspired by **Keep a Changelog** and follows **Semantic Versioning**.
 
+---
 
-The format is inspired by \*Keep a Changelog\* and follows \*Semantic Versioning\*.
+## [0.4.0] - In Progress
 
+### Added
 
+* Explorer optimization module.
+* Explorer configuration options.
+* Explorer registry optimization framework.
+* Explorer execution reporting.
+* Integration of the Explorer module into the main runner.
+* Shared registry helper functions in `WinMinimal.Common`.
+* Centralized project version management through `Config.ps1`.
+* Initial developer architecture documentation.
+* Initial developer guide.
+* Technical reference documentation for all implemented modules.
 
-\---
+### Improved
 
+* Unified reporting across all optimization modules.
+* Simplified console output.
+* Improved execution summary.
+* Increased code reuse through the Common framework.
+* Documentation organization and structure.
+* Project README.
 
+### Changed
 
-\## \[0.4.0] - In Progress
+* Project documentation reorganized into Architecture, Guides and Reference sections.
+* Framework architecture consolidated around shared services.
+* Explorer module aligned with the common framework design.
+* Project documentation moved under the `Docs` directory where appropriate.
 
+---
 
+## [0.3.0]
 
-\### Added
+### Added
 
+* Privacy optimization module.
+* Privacy configuration options.
+* Privacy registry optimization framework.
+* Privacy execution reporting.
+* Integration of the Privacy module into the main runner.
 
+### Improved
 
-\* Explorer optimization configuration.
+* Reporting framework extended to support additional optimization modules.
+* Project configuration expanded for privacy-related settings.
 
-\* Initial Explorer-related user options.
+---
 
-\* Foundation for the Explorer optimization module.
+## [0.2.0]
 
+### Added
 
+* Startup optimization module.
+* Startup configuration options.
+* Service optimization framework.
+* Scheduled task optimization.
+* Execution reporting for startup optimization.
 
-\### Planned
+### Improved
 
+* Modular execution framework.
+* Logging infrastructure.
 
+---
 
-\* Explorer registry optimization module.
+## [0.1.0]
 
-\* Explorer execution reporting.
+### Added
 
-\* Integration into the main runner.
-
-
-
-\---
-
-
-
-\## \[0.3.0] - 2026-07-02
-
-
-
-\### Added
-
-
-
-\* Privacy optimization module.
-
-\* Privacy registry optimization framework.
-
-\* Configurable privacy options.
-
-\* Privacy execution reporting.
-
-\* Privacy integration into the main runner.
-
-
-
-\### Changed
-
-
-
-\* Centralized project version in `Config\\Config.ps1`.
-
-\* Improved execution summary.
-
-\* Added execution status.
-
-\* Added module execution counters.
-
-\* Improved console output.
-
-\* Separated console output from logging.
-
-\* Simplified version management.
-
-
-
-\---
-
-
-
-\## \[0.2.0] - 2026-07-02
-
-
-
-\### Added
-
-
-
-\* Modular reporting framework.
-
-\* Execution summary.
-
-\* Console verbosity management.
-
-\* Improved logging framework.
-
-\* Module execution framework.
-
-
-
-\### Changed
-
-
-
-\* Refactored the main runner.
-
-\* Improved console user experience.
-
-\* Added execution timing.
-
-\* Added warning and error reporting.
-
-
-
-\---
-
-
-
-\## \[0.1.0] - 2026-07-01
-
-
-
-\### Added
-
-
-
-\* Initial project structure.
-
-\* Modular architecture.
-
-\* Configuration framework.
-
-\* Logging framework.
-
-\* Application removal module.
-
-\* Startup optimization module.
-
-\* Main project runner.
-
-\* Initial documentation.
-
-\* GitHub repository.
-
-
-
+* Initial project structure.
+* Modular PowerShell architecture.
+* Configuration framework.
+* Logging framework.
+* Application removal module.
+* Main project runner.
+* Initial documentation.
+* GitHub repository.
+* Open-source project structure.
