@@ -1,131 +1,148 @@
 # WinMinimal
 
-> **A modular PowerShell framework to build a clean, lightweight and predictable Windows 11 installation.**
+> **A modular PowerShell framework for building clean, predictable and maintainable Windows installations.**
 
 WinMinimal is **not** another Windows "debloat" script.
 
-It is an open-source project designed around modularity, maintainability and repeatability, with the goal of creating a clean Windows installation while preserving system stability.
+It is an open-source framework designed to optimize Windows through a modular, configuration-driven and fully documented approach.
+
+The primary objective of WinMinimal is not simply to remove components or disable services, but to provide a structured and reproducible way to build Windows installations that remain understandable and maintainable over time.
 
 ---
 
-# Philosophy
+# Why WinMinimal?
 
-WinMinimal follows a few simple engineering principles:
+Many Windows optimization scripts focus on immediate results, often sacrificing readability, maintainability or predictability.
 
-* Small modules
+WinMinimal follows a different philosophy.
+
+Every optimization is:
+
+* configurable;
+* documented;
+* logged;
+* reported;
+* implemented using Microsoft-native technologies whenever possible.
+
+Rather than being a collection of independent scripts, WinMinimal is designed as a reusable framework that can evolve while preserving consistency across the entire project.
+
+---
+
+# Design Goals
+
+WinMinimal has been designed with a few long-term goals in mind.
+
+* Keep Windows understandable.
+* Keep optimizations reproducible.
+* Keep the framework easy to extend.
+* Keep configuration separate from implementation.
+* Favor maintainability over short-term gains.
+
+Every design decision should improve the framework without introducing unnecessary complexity.
+
+---
+
+# Project Philosophy
+
+WinMinimal follows a small set of engineering principles.
+
 * One responsibility per module
 * Explicit configuration
 * Configuration separated from implementation
-* Readable code
 * Deterministic behavior
 * Repeatable execution
+* Idempotent operations whenever possible
+* Safe by default
+* Readable code
+* Comprehensive documentation
 * Simplicity over cleverness
 
 ---
 
 # Features
 
+WinMinimal provides:
+
 * Modular PowerShell architecture
-* User-configurable settings
-* Detailed execution logs
-* Repeatable execution
-* Microsoft-native tools
-* Designed for Windows 11 Pro
-* Easy to extend
+* Configuration-driven execution
+* Structured logging
+* Execution summary reporting
+* Microsoft-native implementation
+* Comprehensive technical documentation
+* Easy extensibility
+* Reproducible execution
+
+The framework is designed to grow by adding new independent modules while preserving a consistent architecture.
 
 ---
 
-# Quick Start
+# Project Organization
 
-If this is your first time using WinMinimal, begin with:
+The project is organized into a small number of well-defined components.
 
-➡ **INSTALL.md**
-
-The installation guide explains every required step, including PowerShell configuration and first execution.
+| Component   | Purpose                                                               |
+| ----------- | --------------------------------------------------------------------- |
+| **Config**  | Project configuration and default optimization settings.              |
+| **Modules** | Reusable PowerShell modules implementing the framework functionality. |
+| **Scripts** | Executable tasks responsible for a specific optimization area.        |
+| **Docs**    | Project documentation and technical reference.                        |
+| **Logs**    | Execution logs generated during script execution.                     |
+| **Backup**  | Backup files created before modifying the operating system.           |
 
 ---
 
-# Project Structure
+# Execution Flow
+
+The execution flow is intentionally simple.
 
 ```text
-WinMinimal
-│
-├── README.md
-├── INSTALL.md
-├── ARCHITECTURE.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-├── LICENSE
-├── .gitignore
-├── Run-WinMinimal.ps1
-│
-├── Config
-│   ├── Config.ps1
-│   ├── Defaults.ps1
-│   └── Profiles
-│
-├── Modules
-│
-├── Scripts
-│
-├── Docs
-│
-├── Logs
-│
-└── Backup
+                    Run-WinMinimal.ps1
+                              |
+                              |
+                   Loads project configuration
+                              |
+                              |
+                     Imports common modules
+                              |
+                              |
+               Executes enabled optimization scripts
+                              |
+      +-----------+-----------+-----------+-----------+
+      |           |           |           |           |
+      v           v           v           v           v
+ Applications  Startup    Privacy   Explorer   Future Modules
+      |           |           |           |           |
+      +-----------+-----------+-----------+-----------+
+                              |
+                              |
+                       Execution report
+                              |
+                              |
+                      Final execution summary
 ```
 
----
-
-# Current Modules
-
-Current implementation includes:
-
-* Application removal
-* Startup optimization
-
-Additional modules are planned and tracked in **Docs/Roadmap.md**.
+Each optimization area is implemented independently while sharing the same configuration, logging and reporting framework.
 
 ---
 
 # Documentation
 
-| Document        | Purpose                          |
-| --------------- | -------------------------------- |
-| INSTALL.md      | Installation and first execution |
-| ARCHITECTURE.md | Project architecture             |
-| CHANGELOG.md    | Version history                  |
-| CONTRIBUTING.md | Contribution guidelines          |
-| SECURITY.md     | Security policy                  |
-| Docs/Roadmap.md | Planned features                 |
+The project documentation is organized into dedicated documents, each with a specific purpose.
 
----
+| Document                  | Purpose                                          |
+| ------------------------- | ------------------------------------------------ |
+| **INSTALL.md**            | Installation and first execution.                |
+| **Docs/Architecture.md**  | Framework architecture and design principles.    |
+| **Docs/Configuration.md** | Configuration reference.                         |
+| **Docs/Modules.md**       | Overview of the project modules.                 |
+| **Docs/Roadmap.md**       | Planned future development.                      |
+| **Docs/Reference/**       | Technical reference for each implemented module. |
+| **CHANGELOG.md**          | Project version history.                         |
+| **CONTRIBUTING.md**       | Contribution guidelines.                         |
+| **SECURITY.md**           | Security policy.                                 |
+| **CODE_OF_CONDUCT.md**    | Community guidelines.                            |
 
-# Roadmap
-
-Planned future improvements include:
-
-* Configuration profiles
-* Privacy optimization
-* Explorer optimization
-* Network optimization
-* Microsoft Defender tuning
-* Cleanup module
-* HTML and JSON reports
-* Dry-run mode
-* Backup and partial rollback
-
-See **Docs/Roadmap.md** for the complete roadmap.
-
----
-
-# Project Status
-
-WinMinimal is currently under active development.
-
-The core architecture has been established and new modules will be added incrementally while maintaining backward compatibility whenever possible.
+The reference documentation describes implementation details such as registry modifications, Windows services, scheduled tasks, expected impact, reboot requirements and design rationale for each module.
 
 ---
 
@@ -133,7 +150,7 @@ The core architecture has been established and new modules will be added increme
 
 Contributions, ideas, bug reports and feature requests are always welcome.
 
-Please read **CONTRIBUTING.md** before submitting a Pull Request.
+Please read **CONTRIBUTING.md** before opening an Issue or submitting a Pull Request.
 
 ---
 
@@ -147,6 +164,8 @@ See the **LICENSE** file for details.
 
 # Final Note
 
-WinMinimal was created with a simple idea:
+WinMinimal is not simply a collection of Windows tweaks.
+
+Its objective is to provide a structured, understandable and reproducible framework for building Windows installations.
 
 > **Clean Windows. Predictable Windows. Documented Windows.**
