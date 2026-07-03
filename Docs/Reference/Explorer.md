@@ -22,7 +22,7 @@ All settings are configurable and can be individually enabled or disabled throug
 
 
 
-The Explorer module currently manages a small set of user interface preferences.
+The Explorer module manages a small set of File Explorer preferences intended to improve the user experience without affecting system stability.
 
 
 
@@ -30,13 +30,13 @@ Its primary goals are to:
 
 
 
-\* improve usability;
+\- improve usability;
 
-\* reduce unnecessary visual clutter;
+\- reduce unnecessary visual clutter;
 
-\* expose useful information by default;
+\- expose useful information by default;
 
-\* keep every modification reversible.
+\- keep every modification reversible.
 
 
 
@@ -56,21 +56,21 @@ No system components are removed or disabled.
 
 
 
-| Setting                               | Safe | Reboot | Reversible |
+| Setting | Safe | Reboot | Reversible |
 
-| ------------------------------------- | :--: | :----: | :--------: |
+|----------|:----:|:------:|:----------:|
 
-| Show file extensions                  |   ✔  |   No   |     Yes    |
+| Show file extensions | ✔ | No | Yes |
 
-| Show hidden files                     |   ✔  |   No   |     Yes    |
+| Show hidden files | ✔ | No | Yes |
 
-| Hide protected operating system files |   ✔  |   No   |     Yes    |
+| Hide protected operating system files | ✔ | No | Yes |
 
-| Open Explorer to \*\*This PC\*\*          |   ✔  |   No   |     Yes    |
+| Open Explorer to \*\*This PC\*\* | ✔ | No | Yes |
 
-| Disable Recent Files                  |   ✔  |   No   |     Yes    |
+| Disable Recent Files | ✔ | No | Yes |
 
-| Disable Frequent Folders              |   ✔  |   No   |     Yes    |
+| Disable Frequent Folders | ✔ | No | Yes |
 
 
 
@@ -82,7 +82,7 @@ No system components are removed or disabled.
 
 
 
-Explorer settings are controlled through:
+Explorer settings are configured through:
 
 
 
@@ -122,21 +122,21 @@ The module currently modifies the following registry values.
 
 
 
-| Registry Value    | Purpose                                                |
+| Registry Value | Purpose |
 
-| ----------------- | ------------------------------------------------------ |
+|----------------|---------|
 
-| `HideFileExt`     | Show or hide file name extensions.                     |
+| `HideFileExt` | Show or hide file name extensions. |
 
-| `Hidden`          | Show or hide hidden files.                             |
+| `Hidden` | Show or hide hidden files. |
 
-| `ShowSuperHidden` | Show or hide protected operating system files.         |
+| `ShowSuperHidden` | Show or hide protected operating system files. |
 
-| `LaunchTo`        | Open File Explorer to \*\*This PC\*\* or \*\*Quick Access\*\*. |
+| `LaunchTo` | Open File Explorer to \*\*This PC\*\* or \*\*Quick Access\*\*. |
 
-| `ShowRecent`      | Enable or disable Recent Files.                        |
+| `ShowRecent` | Enable or disable Recent Files. |
 
-| `ShowFrequent`    | Enable or disable Frequent Folders.                    |
+| `ShowFrequent` | Enable or disable Frequent Folders. |
 
 
 
@@ -160,15 +160,15 @@ No changes are made to:
 
 
 
-\* installed applications;
+\- installed applications;
 
-\* Windows services;
+\- Windows services;
 
-\* scheduled tasks;
+\- scheduled tasks;
 
-\* security features;
+\- security features;
 
-\* network configuration.
+\- network configuration.
 
 
 
@@ -192,9 +192,9 @@ Some Explorer settings may require:
 
 
 
-\* restarting \*\*Windows Explorer\*\*; or
+\- restarting \*\*Windows Explorer\*\*; or
 
-\* signing out and signing in again.
+\- signing out and signing in again.
 
 
 
@@ -230,13 +230,13 @@ The Explorer module contributes to the global execution summary by reporting:
 
 
 
-\* Explorer settings processed;
+\- Explorer settings processed;
 
-\* Explorer settings successfully applied;
+\- Explorer settings successfully applied;
 
-\* warnings;
+\- warnings;
 
-\* errors.
+\- errors.
 
 
 
@@ -260,15 +260,15 @@ Every implemented setting:
 
 
 
-\* is reversible;
+\- is reversible;
 
-\* uses documented Windows configuration mechanisms;
+\- uses documented Windows configuration mechanisms;
 
-\* affects only the current user;
+\- affects only the current user;
 
-\* does not modify system binaries;
+\- does not modify system binaries;
 
-\* does not reduce Windows security.
+\- does not reduce Windows security.
 
 
 
@@ -284,17 +284,15 @@ Possible future Explorer optimizations include:
 
 
 
-\* compact mode;
+\- compact mode;
 
-\* navigation pane customization;
+\- navigation pane customization;
 
-\* default folder view preferences;
+\- default folder view preferences;
 
-\* additional File Explorer usability options.
+\- additional File Explorer usability options.
 
 
 
 Any new optimization should remain optional, documented and individually configurable.
-
-
 
