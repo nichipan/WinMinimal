@@ -1,50 +1,58 @@
-# Explorer Module Reference
+\# Explorer Module Reference
 
 
 
-## Overview
+This document describes the Explorer optimization module implemented by WinMinimal.
 
 
 
-The Explorer module customizes the Windows File Explorer user experience.
+The module configures selected Windows File Explorer preferences to improve usability while preserving predictable system behavior.
 
 
 
-Unlike other WinMinimal modules, this module focuses primarily on usability
-
-rather than performance.
+All settings are configurable and can be individually enabled or disabled through the project configuration.
 
 
 
-The objective is to provide a clean and efficient working environment for
-
-technical users, administrators and power users while remaining fully
-
-configuration-driven.
+\---
 
 
 
-The module follows the WinMinimal design principles:
+\# Overview
 
 
 
-* Safe by default
-
-* Configuration-driven
-
-* Idempotent
-
-* Fully logged
-
-* Report-aware
+The Explorer module currently manages a small set of user interface preferences.
 
 
 
----
+Its primary goals are to:
 
 
 
-# Explorer Settings Summary
+\* improve usability;
+
+\* reduce unnecessary visual clutter;
+
+\* expose useful information by default;
+
+\* keep every modification reversible.
+
+
+
+The module modifies only per-user Explorer settings.
+
+
+
+No system components are removed or disabled.
+
+
+
+\---
+
+
+
+\# Explorer Settings Summary
 
 
 
@@ -58,7 +66,7 @@ The module follows the WinMinimal design principles:
 
 | Hide protected operating system files |   ✔  |   No   |     Yes    |
 
-| Open Explorer to "This PC"            |   ✔  |   No   |     Yes    |
+| Open Explorer to \*\*This PC\*\*          |   ✔  |   No   |     Yes    |
 
 | Disable Recent Files                  |   ✔  |   No   |     Yes    |
 
@@ -66,314 +74,227 @@ The module follows the WinMinimal design principles:
 
 
 
----
+\---
 
 
 
-# Show File Extensions
+\# Configuration
 
 
 
-## Configuration
+Explorer settings are controlled through:
 
 
 
-```powershell
+```text
 
-$ShowFileExtensions = $true
-
-```
-
-
-
-## Purpose
-
-
-
-Always display file name extensions.
-
-
-
-## Benefits
-
-
-
-* Improves security.
-
-* Makes file types immediately visible.
-
-* Avoids confusion caused by hidden extensions.
-
-
-
----
-
-
-
-# Show Hidden Files
-
-
-
-## Configuration
-
-
-
-```powershell
-
-$ShowHiddenFiles = $true
+Config\\Config.ps1
 
 ```
 
 
 
-## Purpose
+Default values are defined in:
 
 
 
-Displays hidden files and folders.
+```text
 
-
-
-## Benefits
-
-
-
-Useful for troubleshooting, scripting and system administration.
-
-
-
----
-
-
-
-# Hide Protected Operating System Files
-
-
-
-## Configuration
-
-
-
-```powershell
-
-$ShowProtectedOperatingSystemFiles = $false
+Config\\Defaults.ps1
 
 ```
 
 
 
-## Purpose
+Users should normally modify only `Config.ps1`.
 
 
 
-Keeps critical operating system files hidden.
+\---
 
 
 
-## Benefits
+\# Registry Changes
 
 
 
-Reduces the risk of accidental deletion.
+The module currently modifies the following registry values.
 
 
 
----
+| Registry Value    | Purpose                                                |
 
+| ----------------- | ------------------------------------------------------ |
 
+| `HideFileExt`     | Show or hide file name extensions.                     |
 
-# Open Explorer to This PC
+| `Hidden`          | Show or hide hidden files.                             |
 
+| `ShowSuperHidden` | Show or hide protected operating system files.         |
 
+| `LaunchTo`        | Open File Explorer to \*\*This PC\*\* or \*\*Quick Access\*\*. |
 
-## Configuration
+| `ShowRecent`      | Enable or disable Recent Files.                        |
 
+| `ShowFrequent`    | Enable or disable Frequent Folders.                    |
 
 
-```powershell
 
-$OpenExplorerToThisPC = $true
+All registry modifications are performed under the current user profile.
 
-```
 
 
+\---
 
-## Purpose
 
 
+\# Expected Impact
 
-Opens File Explorer directly on **This PC** instead of **Home**.
 
 
+The Explorer module affects only the File Explorer user interface.
 
-## Benefits
 
 
+No changes are made to:
 
-Provides immediate access to drives and mounted volumes.
 
 
+\* installed applications;
 
----
+\* Windows services;
 
+\* scheduled tasks;
 
+\* security features;
 
-# Disable Recent Files
+\* network configuration.
 
 
 
-## Configuration
+The module is designed to be low risk and suitable for everyday desktop environments.
 
 
 
-```powershell
+\---
 
-$DisableExplorerRecentFiles = $true
 
-```
 
+\# Reboot Requirements
 
 
-## Purpose
 
+A full system reboot is not normally required.
 
 
-Disables the Recent Files section shown by File Explorer.
 
+Some Explorer settings may require:
 
 
-## Benefits
 
+\* restarting \*\*Windows Explorer\*\*; or
 
+\* signing out and signing in again.
 
-* Improves privacy.
 
-* Reduces visual clutter.
 
+WinMinimal does not currently restart Explorer automatically.
 
 
----
 
+\---
 
 
-# Disable Frequent Folders
 
+\# Logging
 
 
-## Configuration
 
+The module records every applied change through the common logging framework.
 
 
-```powershell
 
-$DisableExplorerFrequentFolders = $true
+Detailed execution logs are written to the project log directory.
 
-```
 
 
+\---
 
-## Purpose
 
 
+\# Reporting
 
-Disables the Frequent Folders section.
 
 
+The Explorer module contributes to the global execution summary by reporting:
 
-## Benefits
 
 
+\* Explorer settings processed;
 
-Provides a cleaner Explorer interface.
+\* Explorer settings successfully applied;
 
+\* warnings;
 
+\* errors.
 
----
 
 
+These values are displayed together with the results of the other optimization modules.
 
-# Safety
 
 
+\---
 
-Explorer customization affects only user interface preferences.
 
 
+\# Safety Notes
 
-No system components are removed or disabled.
 
 
+The Explorer module is intentionally conservative.
 
-All settings are reversible.
 
 
+Every implemented setting:
 
----
 
 
+\* is reversible;
 
-# Logging
+\* uses documented Windows configuration mechanisms;
 
+\* affects only the current user;
 
+\* does not modify system binaries;
 
-Every applied Explorer setting is written to the execution log.
+\* does not reduce Windows security.
 
 
 
----
+\---
 
 
 
-# Reporting
+\# Future Evolution
 
 
 
-The module will contribute its own execution counters in the WinMinimal summary.
+Possible future Explorer optimizations include:
 
 
 
----
+\* compact mode;
 
+\* navigation pane customization;
 
+\* default folder view preferences;
 
-# Future Improvements
+\* additional File Explorer usability options.
 
 
 
-Possible future settings include:
+Any new optimization should remain optional, documented and individually configurable.
 
 
 
-* Compact View
-
-* Launch folder windows in a separate process
-
-* Navigation Pane customization
-
-* Preview Pane
-
-* Details Pane
-
-* Default folder view
-
-* Explorer context menu options
-
-* Classic context menu
-
-* Ribbon / command bar customization
-
-
-
----
-
-
-
-# References
-
-
-
-* Microsoft File Explorer documentation.
-
-* Microsoft Windows Shell documentation.
-
-* WinMinimal source code (`WinMinimal.Explorer.psm1`).
