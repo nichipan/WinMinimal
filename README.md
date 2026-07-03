@@ -1,6 +1,6 @@
 # WinMinimal
 
-> **A modular PowerShell framework for building clean, predictable and maintainable Windows installations.**
+> **A modular framework for building clean, predictable and maintainable Windows installations.**
 
 WinMinimal is **not** another Windows "debloat" script.
 
@@ -63,7 +63,7 @@ WinMinimal follows a small set of engineering principles.
 
 WinMinimal provides:
 
-* Modular PowerShell architecture
+* Modular architecture
 * Configuration-driven execution
 * Structured logging
 * Execution summary reporting
@@ -85,7 +85,7 @@ The project is organized into a small number of well-defined components.
 | **Config**  | Project configuration and default optimization settings.              |
 | **Modules** | Reusable PowerShell modules implementing the framework functionality. |
 | **Scripts** | Executable tasks responsible for a specific optimization area.        |
-| **Docs**    | Project documentation and technical reference.                        |
+| **Docs**    | Project documentation, developer guides and technical reference.      |
 | **Logs**    | Execution logs generated during script execution.                     |
 | **Backup**  | Backup files created before modifying the operating system.           |
 
@@ -129,20 +129,27 @@ Each optimization area is implemented independently while sharing the same confi
 
 The project documentation is organized into dedicated documents, each with a specific purpose.
 
-| Document                  | Purpose                                          |
-| ------------------------- | ------------------------------------------------ |
-| **INSTALL.md**            | Installation and first execution.                |
-| **Docs/Architecture.md**  | Framework architecture and design principles.    |
-| **Docs/Configuration.md** | Configuration reference.                         |
-| **Docs/Modules.md**       | Overview of the project modules.                 |
-| **Docs/Roadmap.md**       | Planned future development.                      |
-| **Docs/Reference/**       | Technical reference for each implemented module. |
-| **CHANGELOG.md**          | Project version history.                         |
-| **CONTRIBUTING.md**       | Contribution guidelines.                         |
-| **SECURITY.md**           | Security policy.                                 |
-| **CODE_OF_CONDUCT.md**    | Community guidelines.                            |
+| Document                          | Purpose                                          |
+| --------------------------------- | ------------------------------------------------ |
+| **INSTALL.md**                    | Installation and first execution.                |
+| **Docs/ARCHITECTURE.md**          | Framework architecture and design principles.    |
+| **Docs/Configuration.md**         | Configuration reference.                         |
+| **Docs/Modules.md**               | Overview of the project modules.                 |
+| **Docs/Roadmap.md**               | Planned future development.                      |
+| **Docs/Guides/DeveloperGuide.md** | Development workflow and project conventions.    |
+| **Docs/Reference/**               | Technical reference for each implemented module. |
+| **CHANGELOG.md**                  | Project version history.                         |
+| **CONTRIBUTING.md**               | Contribution guidelines.                         |
+| **SECURITY.md**                   | Security policy.                                 |
+| **CODE_OF_CONDUCT.md**            | Community guidelines.                            |
 
-The reference documentation describes implementation details such as registry modifications, Windows services, scheduled tasks, expected impact, reboot requirements and design rationale for each module.
+The documentation is intentionally organized into different layers.
+
+The **Architecture** document explains how the framework is designed.
+
+The **Guides** describe development practices and project conventions.
+
+The **Reference** documents describe implementation details such as registry modifications, Windows services, scheduled tasks, expected impact, reboot requirements and design rationale for each implemented module.
 
 ---
 
