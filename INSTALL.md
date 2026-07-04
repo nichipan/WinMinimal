@@ -1,151 +1,302 @@
-# WinMinimal Installation Guide
+\# WinMinimal Installation Guide
+
+
 
 This guide explains how to install and execute WinMinimal for the first time.
 
----
 
-# Prerequisites
+
+\---
+
+
+
+\# Prerequisites
+
+
 
 Before using WinMinimal, make sure you have:
 
-- Windows 11 Pro
-- Administrator privileges
-- Windows PowerShell 5.1 or newer
-- Git, if you want to clone the repository
 
-Git is optional. You can also download the project as a ZIP archive from GitHub.
 
----
+\* Windows 11 Pro (recommended)
 
-# Clone the Repository
+\* Administrator privileges
 
-If Git is installed, open PowerShell and run:
+\* PowerShell 5.1 or newer
+
+\* Git (optional, only if cloning the repository)
+
+
+
+\---
+
+
+
+\# Clone the Repository
+
+
+
+If Git is installed:
+
+
 
 ```powershell
+
 git clone https://github.com/nichipan/WinMinimal.git
+
 cd WinMinimal
+
 ```
+
+
 
 Alternatively, download the project as a ZIP archive from GitHub and extract it to a local folder.
 
----
 
-# Open PowerShell as Administrator
 
-Open the Start menu and search for:
+\---
 
-```text
+
+
+\# Open PowerShell as Administrator
+
+
+
+Open the Start menu.
+
+
+
+Search for:
+
+
+
+```
+
 PowerShell
+
 ```
 
-Right-click **Windows PowerShell** and select:
 
-```text
+
+Right-click \*\*Windows PowerShell\*\* and select:
+
+
+
+```
+
 Run as administrator
+
 ```
 
-Accept the User Account Control prompt.
 
-Administrator privileges are required because WinMinimal modifies Windows applications, services, scheduled tasks and registry settings.
 
----
+Accept the User Account Control (UAC) prompt.
 
-# Allow Script Execution
+
+
+Administrator privileges are required because WinMinimal modifies Windows applications, services and scheduled tasks.
+
+
+
+\---
+
+
+
+\# Allow Script Execution
+
+
 
 By default, Windows may prevent PowerShell scripts from running.
 
-Enable script execution only for the current PowerShell session:
+
+
+Enable script execution \*\*only for the current PowerShell session\*\*:
+
+
 
 ```powershell
+
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 ```
+
+
 
 If prompted, answer:
 
-- **Y** on English Windows
-- **S** on Italian Windows
+
+
+\* \*\*Y\*\* on English Windows
+
+\* \*\*S\*\* on Italian Windows
+
+
 
 This setting is temporary and automatically disappears when the PowerShell window is closed.
 
----
 
-# Review the Configuration
+
+\---
+
+
+
+\# Review the Configuration
+
+
 
 Before executing WinMinimal, review:
 
-```text
-Config\Config.ps1
+
+
 ```
 
-This file contains the main user-configurable settings.
+Config\\Config.ps1
 
-Advanced defaults are stored in:
-
-```text
-Config\Defaults.ps1
 ```
 
-Normal users should usually customize `Config.ps1` only.
 
----
 
-# Execute WinMinimal
+This file contains the user-configurable settings.
+
+
+
+Advanced users may also customize:
+
+
+
+```
+
+Config\\Defaults.ps1
+
+```
+
+
+
+which defines the default lists of applications, services and scheduled tasks managed by the project.
+
+
+
+\---
+
+
+
+\# Execute WinMinimal
+
+
 
 Run the main project runner:
 
+
+
 ```powershell
-.\Run-WinMinimal.ps1
+
+.\\Run-WinMinimal.ps1
+
 ```
 
-The runner executes the enabled modules in the configured order.
 
----
 
-# Verify the Results
+The runner executes all enabled modules in the correct order.
+
+
+
+\---
+
+
+
+\# Verify the Results
+
+
 
 After execution:
 
-- review the console summary;
-- check the execution logs stored in `Logs`;
-- reboot Windows if requested or recommended by a module.
 
----
 
-# Updating the Project
+\* Review the console output.
+
+\* Check the execution logs stored in the `Logs` directory.
+
+\* Reboot Windows if requested or recommended by a module.
+
+
+
+\---
+
+
+
+\# Updating the Project
+
+
 
 If you cloned the repository using Git:
 
+
+
 ```powershell
+
 git pull
+
 ```
 
-If you downloaded the ZIP archive, download the latest version from GitHub and replace the project files.
 
----
 
-# Need Help?
+Otherwise, download the latest version from GitHub.
 
-Before opening an issue, check:
 
-- `README.md`
-- `Docs/Configuration.md`
-- `Docs/Modules.md`
-- `Docs/Reference/`
 
-When reporting a problem, include:
+\---
 
-- Windows version;
-- WinMinimal version;
-- console output;
-- relevant log files;
-- steps to reproduce the issue.
 
----
 
-# Disclaimer
+\# Need Help?
+
+
+
+Before opening an issue, please check:
+
+
+
+\* README.md
+
+\* ARCHITECTURE.md
+
+\* Docs/Roadmap.md
+
+
+
+If the problem persists, open a GitHub Issue including:
+
+
+
+\* Windows version
+
+\* WinMinimal version
+
+\* Console output
+
+\* Relevant log files
+
+\* Description of the problem
+
+
+
+\---
+
+
+
+\# Disclaimer
+
+
 
 WinMinimal modifies Windows configuration.
 
-Although the project is designed to be conservative and well documented, always review the configuration before execution and understand the changes being applied.
+
+
+Although the project is designed to be conservative and well documented, you should always review the configuration before execution and understand the changes being applied.
+
+
 
 Use WinMinimal at your own risk.
+
+
+

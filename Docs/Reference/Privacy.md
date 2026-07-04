@@ -1,8 +1,8 @@
-# Privacy Module Reference
+\# Privacy Module Reference
 
 
 
-## Overview
+\## Overview
 
 
 
@@ -18,15 +18,15 @@ The module follows the WinMinimal design principles:
 
 
 
-* Safe by default
+\* Safe by default
 
-* Configuration-driven
+\* Configuration-driven
 
-* Idempotent
+\* Idempotent
 
-* Fully logged
+\* Fully logged
 
-* Fully documented
+\* Fully documented
 
 
 
@@ -34,11 +34,11 @@ Unless otherwise stated, every optimization is reversible.
 
 
 
----
+\---
 
 
 
-# Privacy Settings Summary
+\# Privacy Settings Summary
 
 
 
@@ -58,15 +58,15 @@ Unless otherwise stated, every optimization is reversible.
 
 
 
----
+\---
 
 
 
-# Disable Advertising ID
+\# Disable Advertising ID
 
 
 
-## Configuration
+\## Configuration
 
 
 
@@ -78,13 +78,13 @@ $DisableAdvertisingId = $true
 
 
 
-## Registry
+\## Registry
 
 
 
 ```text
 
-HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo
+HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo
 
 
 
@@ -94,7 +94,7 @@ Enabled = 0
 
 
 
-## Purpose
+\## Purpose
 
 
 
@@ -104,17 +104,17 @@ advertising.
 
 
 
-## Impact
+\## Impact
 
 
 
-* Improves user privacy.
+\* Improves user privacy.
 
-* Reduces application personalization.
+\* Reduces application personalization.
 
 
 
-## Reboot Required
+\## Reboot Required
 
 
 
@@ -122,15 +122,15 @@ No.
 
 
 
----
+\---
 
 
 
-# Disable Activity History
+\# Disable Activity History
 
 
 
-## Configuration
+\## Configuration
 
 
 
@@ -142,13 +142,13 @@ $DisableActivityHistory = $true
 
 
 
-## Registry
+\## Registry
 
 
 
 ```text
 
-HKLM\SOFTWARE\Policies\Microsoft\Windows\System
+HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System
 
 
 
@@ -160,7 +160,7 @@ UploadUserActivities = 0
 
 
 
-## Purpose
+\## Purpose
 
 
 
@@ -168,7 +168,7 @@ Prevents Windows from publishing and synchronizing user activity history.
 
 
 
-## Impact
+\## Impact
 
 
 
@@ -176,7 +176,7 @@ Improves privacy by reducing synchronization of Timeline-related data.
 
 
 
-## Reboot Required
+\## Reboot Required
 
 
 
@@ -184,15 +184,15 @@ Recommended.
 
 
 
----
+\---
 
 
 
-# Disable Tailored Experiences
+\# Disable Tailored Experiences
 
 
 
-## Configuration
+\## Configuration
 
 
 
@@ -204,13 +204,13 @@ $DisableTailoredExperiences = $true
 
 
 
-## Registry
+\## Registry
 
 
 
 ```text
 
-HKCU\Software\Microsoft\Windows\CurrentVersion\Privacy
+HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Privacy
 
 
 
@@ -220,7 +220,7 @@ TailoredExperiencesWithDiagnosticDataEnabled = 0
 
 
 
-## Purpose
+\## Purpose
 
 
 
@@ -228,7 +228,7 @@ Disables Windows tailored experiences based on diagnostic data.
 
 
 
-## Impact
+\## Impact
 
 
 
@@ -236,7 +236,7 @@ Reduces Microsoft personalization features.
 
 
 
-## Reboot Required
+\## Reboot Required
 
 
 
@@ -244,15 +244,15 @@ No.
 
 
 
----
+\---
 
 
 
-# Disable Suggested Content
+\# Disable Suggested Content
 
 
 
-## Configuration
+\## Configuration
 
 
 
@@ -264,13 +264,13 @@ $DisableSuggestedContent = $true
 
 
 
-## Registry
+\## Registry
 
 
 
 ```text
 
-HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager
 
 ```
 
@@ -280,15 +280,15 @@ Modified values:
 
 
 
-* SubscribedContent-338388Enabled = 0
+\* SubscribedContent-338388Enabled = 0
 
-* SilentInstalledAppsEnabled = 0
+\* SilentInstalledAppsEnabled = 0
 
-* SystemPaneSuggestionsEnabled = 0
+\* SystemPaneSuggestionsEnabled = 0
 
 
 
-## Purpose
+\## Purpose
 
 
 
@@ -298,7 +298,7 @@ consumer applications.
 
 
 
-## Impact
+\## Impact
 
 
 
@@ -306,7 +306,7 @@ Provides a cleaner Windows experience with fewer recommendations.
 
 
 
-## Reboot Required
+\## Reboot Required
 
 
 
@@ -314,15 +314,15 @@ No.
 
 
 
----
+\---
 
 
 
-# Disable Consumer Features
+\# Disable Consumer Features
 
 
 
-## Configuration
+\## Configuration
 
 
 
@@ -334,13 +334,13 @@ $DisableConsumerFeatures = $true
 
 
 
-## Registry
+\## Registry
 
 
 
 ```text
 
-HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent
 
 
 
@@ -350,7 +350,7 @@ DisableWindowsConsumerFeatures = 1
 
 
 
-## Purpose
+\## Purpose
 
 
 
@@ -358,7 +358,7 @@ Disables Windows Consumer Features through Group Policy registry settings.
 
 
 
-## Impact
+\## Impact
 
 
 
@@ -366,7 +366,7 @@ Prevents Windows from enabling several consumer-oriented features.
 
 
 
-## Reboot Required
+\## Reboot Required
 
 
 
@@ -374,16 +374,19 @@ Recommended.
 
 
 
----
+\---
 
 
 
-# References
+\# References
 
 
 
-* Microsoft Windows Policy documentation.
+\* Microsoft Windows Policy documentation.
 
-* Microsoft Windows registry documentation.
+\* Microsoft Windows registry documentation.
 
-* WinMinimal source code (`WinMinimal.Privacy.psm1`).
+\* WinMinimal source code (`WinMinimal.Privacy.psm1`).
+
+
+
