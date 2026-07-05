@@ -50,6 +50,14 @@ $ScriptsToRun = @(
         Name = "Optimizing Explorer"
         Path = "$RootPath\Scripts\Invoke-OptimizeExplorer.ps1"
     }
+    @{
+        Name = "Optimizing hardware"
+        Path = "$RootPath\Scripts\Invoke-OptimizeHardware.ps1"
+    }
+    @{
+        Name = "Optimizing network"
+        Path = "$RootPath\Scripts\Invoke-OptimizeNetwork.ps1"
+    }
 )
 
 $Report["ModulesPlanned"] = $ScriptsToRun.Count

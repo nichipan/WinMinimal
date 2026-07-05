@@ -1,478 +1,128 @@
-\# WinMinimal Roadmap
-
-
+# WinMinimal Roadmap
 
 This document tracks planned features, improvements and future ideas for the WinMinimal project.
 
+The roadmap is intentionally lightweight. It describes direction, not detailed implementation plans.
 
+---
 
-The roadmap is intentionally divided into milestones so that development remains focused and incremental.
+# Completed Foundations
 
+The following foundations are already in place:
 
+- project directory structure;
+- modular architecture;
+- configuration framework;
+- logging framework;
+- reporting framework;
+- common helper module;
+- application removal module;
+- startup optimization module;
+- privacy optimization module;
+- Explorer optimization module;
+- Hardware optimization module;
+- Network optimization module;
+- initial project documentation;
+- technical reference documentation;
+- GitHub repository.
 
-\---
+---
 
+# Current Version
 
+## Version 0.5.0
 
-\# Version 0.1.0 (Current)
+Current focus:
 
+- Hardware optimization;
+- Network optimization;
+- documentation updates for Hardware and Network;
+- reporting integration for Hardware and Network.
 
+---
 
-\## Core framework
+# Near-Term Priorities
 
+## Project Validation
 
+Planned work:
 
-\* \[x] Project directory structure
-
-\* \[x] Modular architecture
-
-\* \[x] Configuration files
-
-\* \[x] Logging framework
-
-\* \[x] Common PowerShell module
-
-\* \[x] Application removal module
-
-\* \[x] Startup optimization module
-
-\* \[x] Main project runner
-
-\* \[x] Initial project documentation
-
-
-
-\---
-
-
-
-\# Version 0.2.0
-
-
-
-\## Reporting
-
-
-
-\* \[ ] Execution summary
-
-\* \[ ] Number of applications removed
-
-\* \[ ] Number of services modified
-
-\* \[ ] Number of scheduled tasks disabled
-
-\* \[ ] Number of warnings
-
-\* \[ ] Number of errors
-
-\* \[ ] Execution time
-
-\* \[ ] Better console output formatting
-
-
-
-\## Configuration
-
-
-
-\* \[ ] Introduce `WinMinimal.Configuration.psm1`
-
-\* \[ ] Move configuration building out of the runner scripts
-
-\* \[ ] Simplify runner scripts
-
-
-
-\---
-
-
-
-\# Version 0.3.0
-
-
-
-\## Profiles
-
-
-
-Implement configuration profiles.
-
-
-
-Planned profiles:
-
-
-
-\* \[ ] Default
-
-\* \[ ] HTPC
-
-\* \[ ] Desktop
-
-\* \[ ] Developer
-
-\* \[ ] VirtualMachine
-
-
-
-Documentation:
-
-
-
-\* \[ ] Docs/Profiles.md
-
-
-
-\---
-
-
-
-\# Version 0.4.0
-
-
-
-\## Privacy
-
-
-
-New module:
-
-
-
-\* \[ ] Invoke-OptimizePrivacy.ps1
-
-
-
-Features:
-
-
-
-\* \[ ] Telemetry settings
-
-\* \[ ] Advertising ID
-
-\* \[ ] Activity history
-
-\* \[ ] Suggested content
-
-\* \[ ] Consumer experiences
-
-\* \[ ] Cloud content
-
-
-
-Documentation:
-
-
-
-\* \[ ] Docs/Privacy.md
-
-
-
-\---
-
-
-
-\# Version 0.5.0
-
-
-
-\## Explorer
-
-
-
-New module:
-
-
-
-\* \[ ] Invoke-OptimizeExplorer.ps1
-
-
-
-Possible features:
-
-
-
-\* \[ ] File extensions
-
-\* \[ ] Hidden files
-
-\* \[ ] Navigation pane
-
-\* \[ ] Explorer preferences
-
-
-
-Documentation:
-
-
-
-\* \[ ] Docs/Explorer.md
-
-
-
-\---
-
-
-
-\# Version 0.6.0
-
-
-
-\## Network
-
-
-
-New module:
-
-
-
-\* \[ ] Invoke-OptimizeNetwork.ps1
-
-
-
-Possible features:
-
-
-
-\* \[ ] SMB tuning
-
-\* \[ ] Network discovery
-
-\* \[ ] Optional IPv6 configuration
-
-\* \[ ] Delivery Optimization
-
-
-
-Documentation:
-
-
-
-\* \[ ] Docs/Network.md
-
-
-
-\---
-
-
-
-\# Version 0.7.0
-
-
-
-\## Microsoft Defender
-
-
-
-New module:
-
-
-
-\* \[ ] Invoke-OptimizeDefender.ps1
-
-
+- PowerShell syntax validation;
+- detection of accidental Markdown in source files;
+- required file checks;
+- module import checks;
+- basic consistency checks;
+- Markdown table checks.
 
 Goal:
 
+Provide a safe pre-commit validation tool for WinMinimal itself.
 
+---
 
-Tune Microsoft Defender without reducing system security.
+## Defender Module
 
+Goal:
 
+Tune Microsoft Defender without weakening system security.
 
-\---
+---
 
+## Updates Module
 
+Goal:
 
-\# Version 0.8.0
+Control Windows Update behavior in a conservative and documented way.
 
+---
 
+# Mid-Term Priorities
 
-\## Cleanup
+## Cleanup Module
 
+Planned scope:
 
+- temporary files;
+- Windows Update cache;
+- component cleanup;
+- log maintenance.
 
-New module:
+---
 
+## Backup and Rollback
 
+Planned scope:
 
-\* \[ ] Invoke-Cleanup.ps1
+- registry backup;
+- service configuration backup;
+- scheduled task backup;
+- partial rollback where feasible.
 
+---
 
+# Future Ideas
 
-Possible features:
+## Reporting
 
+- HTML report;
+- JSON report;
+- CSV export.
 
+## Execution
 
-\* \[ ] Temporary files
+- dry-run mode;
+- interactive mode;
+- module selection;
+- profile-aware execution.
 
-\* \[ ] Windows Update cache
+## Automation
 
-\* \[ ] Component cleanup
+- GitHub Actions;
+- automated validation;
+- PowerShell module packaging.
 
-\* \[ ] Log maintenance
+## Compatibility
 
-
-
-\---
-
-
-
-\# Version 0.9.0
-
-
-
-\## Advanced Features
-
-
-
-\* \[ ] Dry Run / WhatIf mode
-
-\* \[ ] Interactive mode
-
-\* \[ ] Backup support
-
-\* \[ ] Partial rollback
-
-\* \[ ] Configuration validation
-
-\* \[ ] Windows version compatibility checks
-
-
-
-\---
-
-
-
-\# Version 1.0.0
-
-
-
-\## First stable release
-
-
-
-Deliverables:
-
-
-
-\* \[ ] Complete documentation
-
-\* \[ ] Stable API
-
-\* \[ ] GitHub repository
-
-\* \[ ] CHANGELOG.md
-
-\* \[ ] CONTRIBUTING.md
-
-\* \[ ] SECURITY.md
-
-\* \[ ] LICENSE
-
-\* \[ ] Release notes
-
-
-
-\---
-
-
-
-\# Future Ideas
-
-
-
-These ideas are intentionally postponed to avoid over-engineering during early development.
-
-
-
-\## Reporting
-
-
-
-\* \[ ] HTML report
-
-\* \[ ] JSON report
-
-\* \[ ] CSV export
-
-
-
-\## Configuration
-
-
-
-\* \[ ] Configuration wizard
-
-\* \[ ] Automatic profile detection
-
-
-
-\## Automation
-
-
-
-\* \[ ] GitHub Actions
-
-\* \[ ] Automated testing
-
-\* \[ ] PowerShell module packaging
-
-
-
-\## Restore
-
-
-
-\* \[ ] Registry backup
-
-\* \[ ] Service configuration backup
-
-\* \[ ] Scheduled task backup
-
-
-
-\## Compatibility
-
-
-
-\* \[ ] Windows Server support
-
-\* \[ ] Windows 12 support
-
-\* \[ ] ARM64 support
-
-
-
-\---
-
-
-
-\# Guiding Principles
-
-
-
-Every new feature should follow these principles:
-
-
-
-\* Keep modules small.
-
-\* One responsibility per module.
-
-\* Prefer explicit configuration over hidden behavior.
-
-\* Separate configuration from implementation.
-
-\* Keep scripts readable.
-
-\* Avoid unnecessary complexity.
-
-\* Preserve Windows stability.
-
-\* Prefer Microsoft-supported APIs and tools whenever possible.
-
-
-
+- Windows Server support;
+- future Windows versions;
+- ARM64 evaluation.

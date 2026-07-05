@@ -33,6 +33,8 @@ function New-WMReport {
 
         PrivacySettingsApplied  = 0
         ExplorerSettingsApplied = 0
+	HardwareSettingsApplied = 0
+	NetworkSettingsApplied  = 0
 
         Warnings                = 0
         Errors                  = 0
@@ -108,6 +110,8 @@ function Show-WMReport {
     Write-Host ("Scheduled tasks disabled..... {0}" -f $Report["ScheduledTasksDisabled"])
     Write-Host ("Privacy settings applied..... {0}" -f $Report["PrivacySettingsApplied"])
     Write-Host ("Explorer settings applied.... {0}" -f $Report["ExplorerSettingsApplied"])
+    Write-Host ("Hardware settings applied.... {0}" -f $Report["HardwareSettingsApplied"])
+    Write-Host ("Network settings applied..... {0}" -f $Report["NetworkSettingsApplied"])
     Write-Host ("Warnings..................... {0}" -f $Report["Warnings"])
     Write-Host ("Errors....................... {0}" -f $Report["Errors"])
     Write-Host ("Execution time............... {0}" -f $duration.ToString("hh\:mm\:ss"))

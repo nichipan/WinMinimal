@@ -10,7 +10,7 @@ Config\Config.ps1
 
 Most users will only need to edit this file.
 
-Advanced configuration, including the default lists of applications, services, scheduled tasks and registry settings, is stored in:
+Advanced defaults are stored in:
 
 ```text
 Config\Defaults.ps1
@@ -18,99 +18,26 @@ Config\Defaults.ps1
 
 ---
 
-# Configuration Philosophy
-
-WinMinimal follows a simple principle:
-
-* `Config.ps1` contains **user preferences**.
-* `Defaults.ps1` contains **project defaults**.
-* Modules contain **implementation logic**.
-
-This separation keeps the project easier to understand, maintain and extend.
-
----
-
 # ProjectVersion
 
 ```powershell
-$ProjectVersion = "0.4.0"
+$ProjectVersion = "0.5.0"
 ```
 
 This is the global WinMinimal version.
 
-The project version is defined only in `Config\Config.ps1`.
-
-Individual scripts and modules should not contain their own version numbers.
-
 ---
 
-# ActiveProfile
+# Core Settings
 
 ```powershell
 $ActiveProfile = "HTPC"
-```
-
-Selects the active WinMinimal profile.
-
-Profile support is planned and will be expanded in future versions.
-
-Profiles will be stored in:
-
-```text
-Config\Profiles\
-```
-
----
-
-# ConsoleVerbosity
-
-```powershell
 $ConsoleVerbosity = "Normal"
-```
-
-Controls how much information is displayed in the console while WinMinimal is running.
-
-| Value      | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| `Quiet`    | Displays only the final execution summary.                                           |
-| `Normal`   | Displays execution progress and the final summary. Recommended.                      |
-| `Detailed` | Displays detailed execution information. Useful for troubleshooting and development. |
-
-Console verbosity does **not** affect logging.
-
-Detailed information is always written to the log files.
-
----
-
-# Logging
-
-```powershell
 $EnableLogging = $true
 $TimestampLogs = $true
-```
-
-Logs are written to:
-
-```text
-Logs\
-```
-
-When timestamped logs are enabled, each execution creates a separate log file.
-
----
-
-# Safety
-
-```powershell
 $ContinueOnError = $true
 $RequireAdministrator = $true
 ```
-
-`ContinueOnError` controls whether WinMinimal should continue when a non-critical operation fails.
-
-`RequireAdministrator` enforces execution from an elevated PowerShell session.
-
-Administrator privileges are required because WinMinimal modifies applications, services, scheduled tasks and registry settings.
 
 ---
 
@@ -119,14 +46,9 @@ Administrator privileges are required because WinMinimal modifies applications, 
 ```powershell
 $EnableAppRemoval = $true
 $RemoveProvisionedPackages = $true
-
 $RemoveCopilot = $true
 $RemoveXboxComponents = $true
 ```
-
-These settings control removal of unwanted AppX applications.
-
-`RemoveProvisionedPackages` also removes provisioned AppX packages, preventing them from being installed automatically for newly created users.
 
 ---
 
@@ -135,18 +57,9 @@ These settings control removal of unwanted AppX applications.
 ```powershell
 $EnableServiceOptimization = $true
 $EnableScheduledTaskOptimization = $true
-
 $DisableTelemetry = $true
 $DisableWindowsSearch = $true
 $DisableSysMain = $true
-```
-
-These settings control service and scheduled task optimization.
-
-The actual service and scheduled task lists are defined in:
-
-```text
-Config\Defaults.ps1
 ```
 
 ---
@@ -155,55 +68,12 @@ Config\Defaults.ps1
 
 ```powershell
 $EnablePrivacyOptimization = $true
-
 $DisableAdvertisingId = $true
 $DisableActivityHistory = $true
 $DisableTailoredExperiences = $true
 $DisableSuggestedContent = $true
 $DisableConsumerFeatures = $true
 ```
-
-These settings control privacy-related registry and policy changes.
-
-## DisableAdvertisingId
-
-```powershell
-$DisableAdvertisingId = $true
-```
-
-Disables the Windows advertising ID for the current user.
-
-## DisableActivityHistory
-
-```powershell
-$DisableActivityHistory = $true
-```
-
-Disables publishing and uploading of user activity history through Windows policy registry keys.
-
-## DisableTailoredExperiences
-
-```powershell
-$DisableTailoredExperiences = $true
-```
-
-Disables tailored experiences based on diagnostic data.
-
-## DisableSuggestedContent
-
-```powershell
-$DisableSuggestedContent = $true
-```
-
-Disables selected Windows suggested content and silent app installation settings.
-
-## DisableConsumerFeatures
-
-```powershell
-$DisableConsumerFeatures = $true
-```
-
-Disables Windows consumer features through policy registry settings.
 
 ---
 
@@ -211,7 +81,6 @@ Disables Windows consumer features through policy registry settings.
 
 ```powershell
 $EnableExplorerOptimization = $true
-
 $ShowFileExtensions = $true
 $ShowHiddenFiles = $true
 $ShowProtectedOperatingSystemFiles = $false
@@ -220,9 +89,37 @@ $DisableExplorerFrequentFolders = $true
 $OpenExplorerToThisPC = $true
 ```
 
-These settings are planned for the Explorer optimization module.
+---
 
-They will control File Explorer behavior such as file extensions, hidden files, recent files and default startup location.
+# Hardware Optimization
+
+```powershell
+$EnableHardwareOptimization = $true
+$DisableWiFi = $true
+$DisableBluetooth = $true
+$DisableNearbySharing = $true
+$DisableLocationServices = $true
+$DisableNFC = $true
+```
+
+These settings control hardware-facing features and radio interfaces.
+
+---
+
+# Network Optimization
+
+```powershell
+$EnableNetworkOptimization = $true
+$DisableSMBv1 = $true
+$DisableLLMNR = $true
+$DisableNetBIOS = $true
+$DisableNetworkDiscovery = $true
+$DisableMDNS = $true
+```
+
+These settings control network protocols, discovery mechanisms and network-related services.
+
+IPv6 is intentionally not included in the initial Network configuration.
 
 ---
 

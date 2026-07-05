@@ -17,7 +17,7 @@
 # Project settings
 
 $ProjectName    = "WinMinimal"
-$ProjectVersion = "0.4.0"
+$ProjectVersion = "0.5.0"
 
 # Root path
 
@@ -91,3 +91,28 @@ $ShowProtectedOperatingSystemFiles = $false
 $DisableExplorerRecentFiles = $true
 $DisableExplorerFrequentFolders = $true
 $OpenExplorerToThisPC = $true
+
+###############################################################################
+# Hardware optimization
+###############################################################################
+
+$EnableHardwareOptimization = $true
+
+$DisableWiFi             = $true
+$DisableBluetooth        = $true
+$DisableNearbySharing    = $true
+$DisableLocationServices = $true
+$DisableNFC              = $true
+
+###############################################################################
+# Network optimization
+###############################################################################
+
+$EnableNetworkOptimization = $true
+
+$DisableSMBv1             = $true
+$DisableLLMNR             = $true
+$DisableNetBIOS           = $true
+$DisableNetworkDiscovery  = $true
+$DisableMDNS              = $true
+

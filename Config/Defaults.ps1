@@ -249,3 +249,123 @@ $ExplorerRegistrySettings = @(
         EnabledBy = "DisableExplorerFrequentFolders"
     }
 )
+
+###############################################################################
+# Hardware services
+###############################################################################
+
+$HardwareServicesToDisable = @(
+    @{
+        Name      = "Disable Bluetooth Support Service"
+        Service   = "bthserv"
+        EnabledBy = "DisableBluetooth"
+    },
+    @{
+        Name      = "Disable Bluetooth Audio Gateway Service"
+        Service   = "BTAGService"
+        EnabledBy = "DisableBluetooth"
+    },
+    @{
+        Name      = "Disable Radio Management Service"
+        Service   = "RmSvc"
+        EnabledBy = "DisableWiFi"
+    },
+    @{
+        Name      = "Disable Windows Location Framework Service"
+        Service   = "lfsvc"
+        EnabledBy = "DisableLocationServices"
+    },
+    @{
+        Name      = "Disable Connected Devices Platform Service"
+        Service   = "CDPSvc"
+        EnabledBy = "DisableNearbySharing"
+    },
+    @{
+        Name      = "Disable NFC Smart Card Service"
+        Service   = "ScDeviceEnum"
+        EnabledBy = "DisableNFC"
+    }
+)
+
+###############################################################################
+# Hardware registry settings
+###############################################################################
+
+$HardwareRegistrySettings = @(
+    @{
+        Name      = "Disable Nearby Sharing"
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\CDP"
+        Key       = "NearShareChannelUserAuthzPolicy"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "DisableNearbySharing"
+    },
+    @{
+        Name      = "Disable Location Services"
+        Path      = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location"
+        Key       = "Value"
+        Type      = "String"
+        Value     = "Deny"
+        EnabledBy = "DisableLocationServices"
+    }
+)
+
+###############################################################################
+# Network Windows optional features
+###############################################################################
+
+$NetworkWindowsOptionalFeaturesToDisable = @(
+    @{
+        Name      = "Disable SMBv1 Protocol"
+        Feature   = "SMB1Protocol"
+        EnabledBy = "DisableSMBv1"
+    }
+)
+
+###############################################################################
+# Network services
+###############################################################################
+
+$NetworkServicesToDisable = @(
+    @{
+        Name      = "Disable Function Discovery Provider Host"
+        Service   = "fdPHost"
+        EnabledBy = "DisableNetworkDiscovery"
+    },
+    @{
+        Name      = "Disable Function Discovery Resource Publication"
+        Service   = "FDResPub"
+        EnabledBy = "DisableNetworkDiscovery"
+    },
+    @{
+        Name      = "Disable SSDP Discovery"
+        Service   = "SSDPSRV"
+        EnabledBy = "DisableNetworkDiscovery"
+    },
+    @{
+        Name      = "Disable UPnP Device Host"
+        Service   = "upnphost"
+        EnabledBy = "DisableNetworkDiscovery"
+    },
+    @{
+        Name      = "Disable mDNS Responder"
+        Service   = "mDNSResponder"
+        EnabledBy = "DisableMDNS"
+    }
+)
+
+###############################################################################
+# Network registry settings
+###############################################################################
+
+$NetworkRegistrySettings = @(
+    @{
+        Name      = "Disable LLMNR"
+        Path      = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient"
+        Key       = "EnableMulticast"
+        Type      = "DWord"
+        Value     = 0
+        EnabledBy = "DisableLLMNR"
+    }
+)
+

@@ -1,290 +1,139 @@
-\# WinMinimal Modules
+# WinMinimal Modules
 
+This document provides a high-level overview of the WinMinimal module catalog.
 
+Modules are organized by responsibility, not by implementation technique.
 
-This document provides a high-level overview of all WinMinimal modules.
+---
 
+# Module Catalog
 
+| Module | Status | Scope |
+|--------|:------:|-------|
+| Applications | Implemented | Installed applications and provisioned AppX packages. |
+| Startup | Implemented | Startup behavior, Windows services and scheduled tasks. |
+| Privacy | Implemented | Privacy, telemetry and personalization settings. |
+| Explorer | Implemented | File Explorer behavior and user interface preferences. |
+| Hardware | Implemented | Physical devices and radio interfaces. |
+| Network | Implemented | Network protocols and network-related services. |
+| Defender | Planned | Microsoft Defender configuration. |
+| Updates | Planned | Windows Update behavior. |
+| Cleanup | Planned | Maintenance and temporary file cleanup. |
+| Backup | Planned | Backup and rollback support. |
+| Validation | Planned | Project validation and consistency checks. |
 
-Each module is designed to be:
+---
 
+# Responsibility Boundaries
 
+| If the feature affects... | Module |
+|---------------------------|--------|
+| Built-in applications | Applications |
+| Services started at boot | Startup |
+| Scheduled background tasks | Startup |
+| File Explorer user interface | Explorer |
+| Telemetry and personalization | Privacy |
+| Wi-Fi, Bluetooth, camera, microphone or NFC | Hardware |
+| SMB, LLMNR, NetBIOS, mDNS or Network Discovery | Network |
+| Microsoft Defender | Defender |
+| Windows Update | Updates |
+| Temporary files or component cleanup | Cleanup |
+| Restore points, backups or rollback | Backup |
 
-\* Configuration-driven
+---
 
-\* Idempotent
+# Implemented Modules
 
-\* Fully logged
+## Applications
 
-\* Report-aware
+Removes unwanted AppX applications and provisioned packages.
 
-\* Safe by default
-
-\* Fully documented
-
-
-
-\---
-
-
-
-\## Applications
-
-
-
-\*\*Status\*\*
-
-
-
-Stable
-
-
-
-\*\*Description\*\*
-
-
-
-Removes unwanted AppX applications and provisioned packages from Windows.
-
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Applications.md
-
+Docs\Reference\Applications.md
 ```
 
+---
 
-
-\---
-
-
-
-\## Startup
-
-
-
-\*\*Status\*\*
-
-
-
-Stable
-
-
-
-\*\*Description\*\*
-
-
+## Startup
 
 Optimizes Windows services and scheduled tasks.
 
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Startup.md
-
+Docs\Reference\Startup.md
 ```
 
+---
 
-
-\---
-
-
-
-\## Privacy
-
-
-
-\*\*Status\*\*
-
-
-
-Stable
-
-
-
-\*\*Description\*\*
-
-
+## Privacy
 
 Applies privacy-related registry and policy settings.
 
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Privacy.md
-
+Docs\Reference\Privacy.md
 ```
 
+---
 
+## Explorer
 
-\---
+Configures Windows File Explorer behavior and user interface preferences.
 
-
-
-\## Explorer
-
-
-
-\*\*Status\*\*
-
-
-
-In Development
-
-
-
-\*\*Description\*\*
-
-
-
-Configures Windows File Explorer behaviour and user interface preferences.
-
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Explorer.md
-
+Docs\Reference\Explorer.md
 ```
 
+---
 
+## Hardware
 
-\---
+Controls physical devices and radio interfaces such as Wi-Fi, Bluetooth, Nearby Sharing, location services and NFC-related services where present.
 
-
-
-\## Defender
-
-
-
-\*\*Status\*\*
-
-
-
-Planned
-
-
-
-\*\*Description\*\*
-
-
-
-Optimizes Microsoft Defender settings.
-
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Defender.md
-
+Docs\Reference\Hardware.md
 ```
 
+---
 
+## Network
 
-\---
+Controls network protocols, discovery mechanisms and network-related services such as SMBv1, LLMNR, Network Discovery and mDNS-related services where present.
 
-
-
-\## Network
-
-
-
-\*\*Status\*\*
-
-
-
-Planned
-
-
-
-\*\*Description\*\*
-
-
-
-Applies Windows networking optimizations.
-
-
-
-\*\*Reference\*\*
-
-
+Reference:
 
 ```text
-
-Docs\\Reference\\Network.md
-
+Docs\Reference\Network.md
 ```
 
+---
 
+# Planned Modules
 
-\---
+## Defender
 
+Manages Microsoft Defender configuration.
 
+## Updates
 
-\## Cleanup
+Manages Windows Update behavior.
 
+## Cleanup
 
+Manages temporary files, Windows Update cache and maintenance tasks.
 
-\*\*Status\*\*
+## Backup
 
+Provides backup and rollback support before applying system modifications.
 
+## Validation
 
-Planned
-
-
-
-\*\*Description\*\*
-
-
-
-Removes temporary files and obsolete Windows components.
-
-
-
-\---
-
-
-
-\## Backup
-
-
-
-\*\*Status\*\*
-
-
-
-Planned
-
-
-
-\*\*Description\*\*
-
-
-
-Creates backups before applying system modifications.
-
-
-
+Provides repository and project validation checks before commits or releases.
